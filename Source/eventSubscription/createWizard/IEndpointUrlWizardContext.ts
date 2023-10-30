@@ -4,5 +4,5 @@
  *--------------------------------------------------------------------------------------------*/
 
 export interface IEndpointUrlWizardContext {
-    endpointUrl?: string;
+	endpointUrl?: string;
 }
