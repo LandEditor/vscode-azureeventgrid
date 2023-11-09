@@ -3,16 +3,14 @@
  *  Licensed under the MIT License. See LICENSE.md in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { IHookCallbackContext } from "mocha";
-import * as vscode from "vscode";
+import { IHookCallbackContext } from 'mocha';
+import * as vscode from 'vscode';
 
 // tslint:disable-next-line:strict-boolean-expressions export-name
-export let longRunningTestsEnabled: boolean = !/^(false|0)?$/i.test(
-	process.env.ENABLE_LONG_RUNNING_TESTS || ""
-);
+export let longRunningTestsEnabled: boolean = !/^(false|0)?$/i.test(process.env.ENABLE_LONG_RUNNING_TESTS || '');
 
 // Runs before all tests
 suiteSetup(async function (this: IHookCallbackContext): Promise<void> {
-	this.timeout(120 * 1000);
-	await vscode.commands.executeCommand("azureEventGridTopic.refresh"); // activate the extension before tests begin
+    this.timeout(120 * 1000);
+    await vscode.commands.executeCommand('azureEventGridTopic.refresh'); // activate the extension before tests begin
 });

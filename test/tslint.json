@@ -1,7 +1,10 @@
 {
-	"extends": "../tslint.json",
-	"rules": {
-		"no-console": false,
-		"no-implicit-dependencies": [true, "dev"]
-	}
+    "extends": "../tslint.json",
+    "rules": {
+        "no-console": false,
+        "no-implicit-dependencies": [
+            true,
+            "dev"
+        ]
+    }
 }
