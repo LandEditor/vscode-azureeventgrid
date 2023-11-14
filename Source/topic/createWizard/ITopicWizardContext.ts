@@ -7,7 +7,7 @@ import { Topic } from "azure-arm-eventgrid/lib/models";
 import { IResourceGroupWizardContext } from "vscode-azureextensionui";
 
 export interface ITopicWizardContext extends IResourceGroupWizardContext {
-	topic?: Topic;
+    topic?: Topic;
 
-	newTopicName?: string;
+    newTopicName?: string;
 }
