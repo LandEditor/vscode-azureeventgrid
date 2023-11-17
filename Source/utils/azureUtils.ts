@@ -6,17 +6,21 @@
 import { localize } from "./localize";
 
 export namespace azureUtils {
-    function parseResourceId(id: string): RegExpMatchArray {
-        const matches: RegExpMatchArray | null = id.match(/\/subscriptions\/(.*)\/resourceGroups\/(.*)\/providers\/(.*)\/(.*)/);
+	function parseResourceId(id: string): RegExpMatchArray {
+		const matches: RegExpMatchArray | null = id.match(
+			/\/subscriptions\/(.*)\/resourceGroups\/(.*)\/providers\/(.*)\/(.*)/
+		);
 
-        if (matches === null || matches.length < 3) {
-            throw new Error(localize('invalidResourceId', 'Invalid Azure Resource Id'));
-        }
+		if (matches === null || matches.length < 3) {
+			throw new Error(
+				localize("invalidResourceId", "Invalid Azure Resource Id")
+			);
+		}
 
-        return matches;
-    }
+		return matches;
+	}
 
-    export function getResourceGroupFromId(id: string): string {
-        return parseResourceId(id)[2];
-    }
+	export function getResourceGroupFromId(id: string): string {
+		return parseResourceId(id)[2];
+	}
 }
