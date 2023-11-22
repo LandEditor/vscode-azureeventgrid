@@ -2,19 +2,19 @@
   "name": "vscode-azureeventgrid",
   "displayName": "Azure Event Grid (deprecated)",
   "description": "%extension.description%",
-  "version": "0.1.2-alpha",
-  "publisher": "ms-azuretools",
+  "version": "0.0.1",
+  "publisher": "playform",
   "icon": "resources/azureEventGrid.png",
   "aiKey": "AIF-d9b70cd4-b9f9-4d70-929b-a071c400b217",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Microsoft/vscode-azureeventgrid"
+    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
   },
   "galleryBanner": {
     "color": "#002050",
     "theme": "dark"
   },
-  "homepage": "https://github.com/Microsoft/vscode-azureeventgrid/blob/main/README.md",
+  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
   "license": "MIT",
   "preview": true,
   "activationEvents": [
@@ -350,7 +350,8 @@
     "package": "vsce package --githubBranch main",
     "lint": "tslint --project tsconfig.json -t verbose",
     "postinstall": "node ./node_modules/vscode/bin/install",
-    "test": "gulp test"
+    "test": "gulp test",
+    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
   },
   "devDependencies": {
     "@types/chance": "1.1.6",
@@ -368,7 +369,8 @@
     "typescript": "5.3.2",
     "vsce": "1.81.1",
     "vscode-azureextensiondev": "0.10.4",
-    "vscode": "1.1.36"
+    "vscode": "1.1.36",
+    "typescript-esbuild": "0.3.1"
   },
   "dependencies": {
     "azure-arm-containerregistry": "2.2.0",
@@ -378,12 +380,25 @@
     "azure-arm-resource": "4.1.0-preview",
     "chance": "1.1.11",
     "fs-extra": "11.1.1",
-    "json-schema-faker": "~0.5.4",
+    "json-schema-faker": "0.5.4",
     "request-promise": "4.2.2",
     "vscode-azureextensionui": "0.20.0",
     "vscode-nls": "5.2.0"
   },
   "extensionDependencies": [
     "ms-vscode.azure-account"
-  ]
+  ],
+  "bugs": {
+    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  },
+  "type": "module",
+  "private": "false",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "name": "Nikola Hristov",
+    "email": "nikola@nikolahristov.tech",
+    "url": "https://nikolahristov.tech"
+  }
 }
