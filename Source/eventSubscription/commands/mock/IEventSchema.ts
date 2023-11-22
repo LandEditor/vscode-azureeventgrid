@@ -4,12 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 
 export interface IEventSchema {
-	properties: {
-		[key: string]: {
-			pattern?: string;
-			// tslint:disable-next-line:no-reserved-keywords
-			default?: string;
-		};
-	};
-	definitions?: object;
+    properties: {
+        [key: string]: {
+            pattern?: string,
+            // tslint:disable-next-line:no-reserved-keywords
+            default?: string
+        }
+    };
+    definitions?: object;
 }
