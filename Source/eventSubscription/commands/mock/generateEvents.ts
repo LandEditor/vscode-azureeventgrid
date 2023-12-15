@@ -17,7 +17,7 @@ jsf.extend("chance", () => {
 });
 
 export async function generateEvents(
-	uri: Uri
+	uri: Uri,
 ): Promise<[{}[], IMockEventGenerator]> {
 	const doc: TextDocument = await workspace.openTextDocument(uri);
 	const eventGenerator: IMockEventGenerator = <IMockEventGenerator>(

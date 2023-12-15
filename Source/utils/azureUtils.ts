@@ -8,12 +8,12 @@ import { localize } from "./localize";
 export namespace azureUtils {
 	function parseResourceId(id: string): RegExpMatchArray {
 		const matches: RegExpMatchArray | null = id.match(
-			/\/subscriptions\/(.*)\/resourceGroups\/(.*)\/providers\/(.*)\/(.*)/
+			/\/subscriptions\/(.*)\/resourceGroups\/(.*)\/providers\/(.*)\/(.*)/,
 		);
 
 		if (matches === null || matches.length < 3) {
 			throw new Error(
-				localize("invalidResourceId", "Invalid Azure Resource Id")
+				localize("invalidResourceId", "Invalid Azure Resource Id"),
 			);
 		}
 

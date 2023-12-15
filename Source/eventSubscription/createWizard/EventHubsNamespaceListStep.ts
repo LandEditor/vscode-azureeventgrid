@@ -28,14 +28,14 @@ export class EventHubsNamespaceListStep<
 			const quickPickOptions: IAzureQuickPickOptions = {
 				placeHolder: localize(
 					"listPlaceHolder",
-					"Select an Event Hubs Namespace"
+					"Select an Event Hubs Namespace",
 				),
 				id: `EventHubsNamespaceListStep/${wizardContext.subscriptionId}`,
 			};
 			wizardContext.eventHubsNamespace = (
 				await ext.ui.showQuickPick(
 					this.getQuickPicks(wizardContext),
-					quickPickOptions
+					quickPickOptions,
 				)
 			).data;
 		}
@@ -44,11 +44,11 @@ export class EventHubsNamespaceListStep<
 	}
 
 	private async getQuickPicks(
-		wizardContext: T
+		wizardContext: T,
 	): Promise<IAzureQuickPickItem<Eventhub>[]> {
 		const client: EventHubManagementClient = createAzureClient(
 			wizardContext,
-			EventHubManagementClient
+			EventHubManagementClient,
 		);
 		const namespaces: EHNamespace[] = await client.namespaces.list();
 		return namespaces.map((n: EHNamespace) => {

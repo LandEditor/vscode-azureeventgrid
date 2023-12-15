@@ -27,7 +27,7 @@ export class EventSubscriptionTreeItem extends AzureTreeItem {
 
 	public constructor(
 		parent: EventSubscriptionProvider,
-		eventSubscription: EventSubscription
+		eventSubscription: EventSubscription,
 	) {
 		super(parent);
 		if (
@@ -55,41 +55,41 @@ export class EventSubscriptionTreeItem extends AzureTreeItem {
 		const message: string = localize(
 			"confirmDelete",
 			'Are you sure you want to delete event subscription "{0}"?',
-			this.name
+			this.name,
 		);
 		await ext.ui.showWarningMessage(
 			message,
 			{ modal: true },
 			DialogResponses.deleteResponse,
-			DialogResponses.cancel
+			DialogResponses.cancel,
 		);
 
 		const client: EventGridManagementClient = createAzureClient(
 			this.root,
-			EventGridManagementClient
+			EventGridManagementClient,
 		);
 		await vscode.window.withProgress(
 			{
 				title: localize(
 					"deleting",
 					'Deleting event subscription "{0}"...',
-					this.name
+					this.name,
 				),
 				location: vscode.ProgressLocation.Notification,
 			},
 			async () => {
 				await client.eventSubscriptions.deleteMethod(
 					this.topic,
-					this.name
+					this.name,
 				);
-			}
+			},
 		);
 		vscode.window.showInformationMessage(
 			localize(
 				"successfullyDeleted",
 				'Successfully deleted event subscription "{0}".',
-				this.name
-			)
+				this.name,
+			),
 		);
 	}
 }

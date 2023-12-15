@@ -17,11 +17,11 @@ export class EndpointUrlStep<
 				await ext.ui.showInputBox({
 					placeHolder: localize(
 						"urlPlaceholder",
-						"Subscriber Endpoint"
+						"Subscriber Endpoint",
 					),
 					prompt: localize(
 						"urlPrompt",
-						"Provide a subscriber endpoint."
+						"Provide a subscriber endpoint.",
 					),
 					validateInput: this.validateInput,
 				})

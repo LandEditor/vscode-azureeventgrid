@@ -31,7 +31,7 @@ export class IoTHubListStep<
 			wizardContext.iotHub = (
 				await ext.ui.showQuickPick(
 					this.getQuickPicks(wizardContext),
-					quickPickOptions
+					quickPickOptions,
 				)
 			).data;
 		}
@@ -40,11 +40,11 @@ export class IoTHubListStep<
 	}
 
 	private async getQuickPicks(
-		wizardContext: T
+		wizardContext: T,
 	): Promise<IAzureQuickPickItem<IotHubDescription>[]> {
 		const client: IotHubClient = createAzureClient(
 			wizardContext,
-			IotHubClient
+			IotHubClient,
 		);
 		const hubs: IotHubDescription[] =
 			await client.iotHubResource.listBySubscription();

@@ -48,18 +48,18 @@ export async function sendEvents(uri: Uri): Promise<void> {
 						"aeg-event-type": "Notification",
 					},
 					body: JSON.stringify(events),
-				}
+				},
 			));
 
 			window.showInformationMessage(
-				localize("sent", "Successfully sent events.")
+				localize("sent", "Successfully sent events."),
 			);
-		}
+		},
 	);
 }
 
 async function getEndpointUrl(
-	eventGenerator: IMockEventGenerator
+	eventGenerator: IMockEventGenerator,
 ): Promise<string> {
 	if (eventGenerator.destination) {
 		if (eventGenerator.destination.endpointUrl) {
@@ -68,17 +68,17 @@ async function getEndpointUrl(
 			const node: EventSubscriptionTreeItem | undefined = <
 				EventSubscriptionTreeItem | undefined
 			>await ext.eventSubscriptionTree.findTreeItem(
-				eventGenerator.destination.eventSubscriptionId
+				eventGenerator.destination.eventSubscriptionId,
 			);
 			if (node) {
 				const client: EventGridManagementClient = createAzureClient(
 					node.root,
-					EventGridManagementClient
+					EventGridManagementClient,
 				);
 				const url: EventSubscriptionFullUrl =
 					await client.eventSubscriptions.getFullUrl(
 						node.topic,
-						node.name
+						node.name,
 					);
 				if (url.endpointUrl) {
 					return url.endpointUrl;
@@ -86,8 +86,8 @@ async function getEndpointUrl(
 					throw new Error(
 						localize(
 							"failedToGetUrl",
-							"Failed to retrieve endpoint URL."
-						)
+							"Failed to retrieve endpoint URL.",
+						),
 					);
 				}
 			} else {
@@ -95,8 +95,8 @@ async function getEndpointUrl(
 					localize(
 						"failedToFindNode",
 						'Failed to find Event Grid Subscription with id "{0}".',
-						eventGenerator.destination.eventSubscriptionId
-					)
+						eventGenerator.destination.eventSubscriptionId,
+					),
 				);
 			}
 		}
@@ -105,7 +105,7 @@ async function getEndpointUrl(
 	throw new Error(
 		localize(
 			"destinationRequired",
-			'You must specify either an "endpointUrl" or "eventSubscriptionId" as the destination.'
-		)
+			'You must specify either an "endpointUrl" or "eventSubscriptionId" as the destination.',
+		),
 	);
 }

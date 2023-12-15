@@ -49,41 +49,41 @@ export class TopicTreeItem extends AzureTreeItem {
 		const message: string = localize(
 			"confirmDelete",
 			'Are you sure you want to delete topic "{0}"?',
-			this._name
+			this._name,
 		);
 		await ext.ui.showWarningMessage(
 			message,
 			{ modal: true },
 			DialogResponses.deleteResponse,
-			DialogResponses.cancel
+			DialogResponses.cancel,
 		);
 
 		const client: EventGridManagementClient = createAzureClient(
 			this.root,
-			EventGridManagementClient
+			EventGridManagementClient,
 		);
 		await vscode.window.withProgress(
 			{
 				title: localize(
 					"deleting",
 					'Deleting topic "{0}"...',
-					this._name
+					this._name,
 				),
 				location: vscode.ProgressLocation.Notification,
 			},
 			async () => {
 				await client.topics.deleteMethod(
 					this._resourceGroup,
-					this._name
+					this._name,
 				);
-			}
+			},
 		);
 		vscode.window.showInformationMessage(
 			localize(
 				"successfullyDeleted",
 				'Successfully deleted topic "{0}".',
-				this._name
-			)
+				this._name,
+			),
 		);
 	}
 }
