@@ -19,7 +19,7 @@ export namespace treeUtils {
 			"..",
 			"..",
 			"resources",
-			`${iconName}.svg`,
+			`${iconName}.svg`
 		);
 	}
 
@@ -33,7 +33,7 @@ export namespace treeUtils {
 				"..",
 				"resources",
 				"light",
-				`${iconName}.svg`,
+				`${iconName}.svg`
 			),
 			dark: path.join(
 				__filename,
@@ -43,7 +43,7 @@ export namespace treeUtils {
 				"..",
 				"resources",
 				"dark",
-				`${iconName}.svg`,
+				`${iconName}.svg`
 			),
 		};
 	}

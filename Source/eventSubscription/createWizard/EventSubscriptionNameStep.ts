@@ -14,7 +14,7 @@ import { IEventSubscriptionWizardContext } from "./IEventSubscriptionWizardConte
 
 export class EventSubscriptionNameStep extends AzureNameStep<IEventSubscriptionWizardContext> {
 	public async prompt(
-		wizardContext: IEventSubscriptionWizardContext,
+		wizardContext: IEventSubscriptionWizardContext
 	): Promise<IEventSubscriptionWizardContext> {
 		if (!wizardContext.newEventSubscriptionName) {
 			const suggestedName: string | undefined =
@@ -26,11 +26,11 @@ export class EventSubscriptionNameStep extends AzureNameStep<IEventSubscriptionW
 					value: suggestedName,
 					placeHolder: localize(
 						"namePlaceholder",
-						"Event subscription name",
+						"Event subscription name"
 					),
 					prompt: localize(
 						"namePrompt",
-						"Provide an event subscription name.",
+						"Provide an event subscription name."
 					),
 					validateInput: this.validateName,
 				})
@@ -40,7 +40,7 @@ export class EventSubscriptionNameStep extends AzureNameStep<IEventSubscriptionW
 				wizardContext.relatedNameTask = this.generateRelatedName(
 					wizardContext,
 					wizardContext.newEventSubscriptionName,
-					resourceGroupNamingRules,
+					resourceGroupNamingRules
 				);
 			}
 		}
@@ -50,13 +50,13 @@ export class EventSubscriptionNameStep extends AzureNameStep<IEventSubscriptionW
 
 	protected async isRelatedNameAvailable(
 		wizardContext: IEventSubscriptionWizardContext,
-		name: string,
+		name: string
 	): Promise<boolean> {
 		return ResourceGroupListStep.isNameAvailable(wizardContext, name);
 	}
 
 	private async validateName(
-		name: string | undefined,
+		name: string | undefined
 	): Promise<string | undefined> {
 		name = name ? name.trim() : "";
 
@@ -67,12 +67,12 @@ export class EventSubscriptionNameStep extends AzureNameStep<IEventSubscriptionW
 				"invalidLength",
 				"The name must be between {0} and {1} characters.",
 				min,
-				max,
+				max
 			);
 		} else if (name.match(/[^a-zA-Z0-9\-]/) !== null) {
 			return localize(
 				"invalidChars",
-				"The name can only contain letters, numbers, and hyphens.",
+				"The name can only contain letters, numbers, and hyphens."
 			);
 		} else {
 			return undefined;

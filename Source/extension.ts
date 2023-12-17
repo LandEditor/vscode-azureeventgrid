@@ -24,7 +24,7 @@ import { ext } from "./extensionVariables";
 import { registerTopicCommands } from "./topic/registerTopicCommands";
 
 export async function activate(
-	context: vscode.ExtensionContext,
+	context: vscode.ExtensionContext
 ): Promise<AzureExtensionApiProvider> {
 	ext.context = context;
 	ext.reporter = createTelemetryReporter(context);
@@ -47,10 +47,10 @@ export async function activate(
 				"azureEventGrid.selectSubscriptions",
 				async () =>
 					await vscode.commands.executeCommand(
-						"azure-account.selectSubscriptions",
-					),
+						"azure-account.selectSubscriptions"
+					)
 			);
-		},
+		}
 	);
 
 	return createApiProvider([]);

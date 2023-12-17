@@ -23,7 +23,7 @@ import { TopicType } from "./TopicTypeStep";
 
 export class EventSubscriptionCreateStep extends AzureWizardExecuteStep<IEventSubscriptionWizardContext> {
 	public async execute(
-		wizardContext: IEventSubscriptionWizardContext,
+		wizardContext: IEventSubscriptionWizardContext
 	): Promise<IEventSubscriptionWizardContext> {
 		if (!wizardContext.eventSubscription) {
 			let topicId: string;
@@ -64,8 +64,8 @@ export class EventSubscriptionCreateStep extends AzureWizardExecuteStep<IEventSu
 						localize(
 							"unrecognizedTopicType",
 							'Unrecognized topic type "{0}".',
-							wizardContext.topicType,
-						),
+							wizardContext.topicType
+						)
 					);
 			}
 
@@ -74,13 +74,13 @@ export class EventSubscriptionCreateStep extends AzureWizardExecuteStep<IEventSu
 					"creating",
 					'Creating event subscription "{0}" for topic "{1}"...',
 					wizardContext.newEventSubscriptionName,
-					topicId,
-				),
+					topicId
+				)
 			);
 
 			const client: EventGridManagementClient = createAzureClient(
 				wizardContext,
-				EventGridManagementClient,
+				EventGridManagementClient
 			);
 			// tslint:disable-next-line:no-non-null-assertion
 			wizardContext.eventSubscription =
@@ -92,13 +92,13 @@ export class EventSubscriptionCreateStep extends AzureWizardExecuteStep<IEventSu
 							endpointUrl: wizardContext.endpointUrl,
 							endpointType: "WebHook",
 						},
-					},
+					}
 				);
 
 			const message: string = localize(
 				"created",
 				'Successfully created event subscription "{0}".',
-				wizardContext.newEventSubscriptionName,
+				wizardContext.newEventSubscriptionName
 			);
 			ext.outputChannel.appendLine(message);
 			vscode.window.showInformationMessage(message);

@@ -34,7 +34,7 @@ export class TopicNameStep<
 				wizardContext.relatedNameTask = this.generateRelatedName(
 					wizardContext,
 					wizardContext.newTopicName,
-					resourceGroupNamingRules,
+					resourceGroupNamingRules
 				);
 			}
 		}
@@ -44,13 +44,13 @@ export class TopicNameStep<
 
 	protected async isRelatedNameAvailable(
 		wizardContext: T,
-		name: string,
+		name: string
 	): Promise<boolean> {
 		return await ResourceGroupListStep.isNameAvailable(wizardContext, name);
 	}
 
 	private async validateName(
-		name: string | undefined,
+		name: string | undefined
 	): Promise<string | undefined> {
 		name = name ? name.trim() : "";
 
@@ -61,12 +61,12 @@ export class TopicNameStep<
 				"invalidLength",
 				"The name must be between {0} and {1} characters.",
 				min,
-				max,
+				max
 			);
 		} else if (name.match(/[^a-zA-Z0-9\-]/) !== null) {
 			return localize(
 				"invalidChars",
-				"The name can only contain letters, numbers, and hyphens.",
+				"The name can only contain letters, numbers, and hyphens."
 			);
 		} else {
 			return undefined;

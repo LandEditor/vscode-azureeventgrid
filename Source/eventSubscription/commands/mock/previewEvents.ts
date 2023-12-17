@@ -19,6 +19,6 @@ export async function previewEvents(uri: Uri): Promise<void> {
 		JSON.stringify(events, undefined, 2),
 		"eventsPreview",
 		".json",
-		viewColumn,
+		viewColumn
 	);
 }

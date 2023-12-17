@@ -22,7 +22,7 @@ export namespace fsUtils {
 	export async function getUniqueFileName(
 		folderPath: string,
 		prefix: string,
-		suffix?: string,
+		suffix?: string
 	): Promise<string> {
 		let count: number = 0;
 		const maxCount: number = 1024;
@@ -36,7 +36,7 @@ export namespace fsUtils {
 
 			const pathExists: boolean = await fse.pathExists(fullPath);
 			const editorExists: boolean = workspace.textDocuments.some(
-				(doc: TextDocument) => isPathEqual(doc.uri.fsPath, fullPath),
+				(doc: TextDocument) => isPathEqual(doc.uri.fsPath, fullPath)
 			);
 			if (!pathExists && !editorExists) {
 				return fullFileName;
@@ -46,10 +46,7 @@ export namespace fsUtils {
 		}
 
 		throw new Error(
-			localize(
-				"failedUnique",
-				"Failed to find unique name for new file.",
-			),
+			localize("failedUnique", "Failed to find unique name for new file.")
 		);
 	}
 
@@ -61,13 +58,13 @@ export namespace fsUtils {
 		data: string,
 		fileNamePrefix: string,
 		fileNameSuffix: string,
-		viewColumn?: number,
+		viewColumn?: number
 	): Promise<void> {
 		const folderPath: string = workspace.rootPath || os.homedir();
 		const fileName: string = await getUniqueFileName(
 			folderPath,
 			fileNamePrefix,
-			fileNameSuffix,
+			fileNameSuffix
 		);
 		const uri: Uri = Uri.file(path.join(folderPath, fileName)).with({
 			scheme: "untitled",
@@ -77,7 +74,7 @@ export namespace fsUtils {
 			doc,
 			viewColumn !== undefined && viewColumn > 3
 				? ViewColumn.One
-				: viewColumn,
+				: viewColumn
 		);
 		await editor.edit((builder: TextEditorEdit) => {
 			builder.insert(new Position(0, 0), data);

@@ -28,7 +28,7 @@ import { EventSubscriptionTreeItem } from "./EventSubscriptionTreeItem";
 export class EventSubscriptionProvider extends SubscriptionTreeItem {
 	public readonly childTypeLabel: string = localize(
 		"eventSubscription",
-		"Event Subscription",
+		"Event Subscription"
 	);
 
 	public hasMoreChildrenImpl(): boolean {
@@ -36,11 +36,11 @@ export class EventSubscriptionProvider extends SubscriptionTreeItem {
 	}
 
 	public async loadMoreChildrenImpl(
-		_clearCache: boolean,
+		_clearCache: boolean
 	): Promise<EventSubscriptionTreeItem[]> {
 		const client: EventGridManagementClient = createAzureClient(
 			this.root,
-			EventGridManagementClient,
+			EventGridManagementClient
 		);
 
 		// There is no "listAll" method - we have to list individually by location
@@ -50,7 +50,7 @@ export class EventSubscriptionProvider extends SubscriptionTreeItem {
 			try {
 				// tslint:disable-next-line:no-non-null-assertion
 				return await client.eventSubscriptions.listRegionalBySubscription(
-					location.name!,
+					location.name!
 				);
 			} catch (error) {
 				// Ignore errors for regions where EventGrid is not supported
@@ -68,22 +68,22 @@ export class EventSubscriptionProvider extends SubscriptionTreeItem {
 		>[]).concat(
 			...(await Promise.all(
 				[client.eventSubscriptions.listGlobalBySubscription()].concat(
-					...listByLocationTasks,
-				),
-			)),
+					...listByLocationTasks
+				)
+			))
 		);
 		return eventSubscriptions.map(
-			(es: EventSubscription) => new EventSubscriptionTreeItem(this, es),
+			(es: EventSubscription) => new EventSubscriptionTreeItem(this, es)
 		);
 	}
 
 	public async createChildImpl(
 		showCreatingNode: (label: string) => void,
-		actionContext?: IActionContext,
+		actionContext?: IActionContext
 	): Promise<EventSubscriptionTreeItem> {
 		const wizardContext: IEventSubscriptionWizardContext = Object.assign(
 			{},
-			this.root,
+			this.root
 		);
 
 		const wizard: AzureWizard<IEventSubscriptionWizardContext> =
@@ -94,7 +94,7 @@ export class EventSubscriptionProvider extends SubscriptionTreeItem {
 					new EndpointUrlStep(),
 				],
 				[new EventSubscriptionCreateStep()],
-				wizardContext,
+				wizardContext
 			);
 
 		// https://github.com/Microsoft/vscode-azuretools/issues/120
@@ -109,19 +109,19 @@ export class EventSubscriptionProvider extends SubscriptionTreeItem {
 		const message: string = localize(
 			"creatingEventSubscription",
 			'Creating event subscription "{0}"...',
-			wizardContext.newEventSubscriptionName,
+			wizardContext.newEventSubscriptionName
 		);
 		await vscode.window.withProgress(
 			{ title: message, location: vscode.ProgressLocation.Notification },
 			async () => {
 				// tslint:disable-next-line:no-non-null-assertion
 				await wizard.execute(actionContext!);
-			},
+			}
 		);
 		// tslint:disable-next-line:no-non-null-assertion
 		return new EventSubscriptionTreeItem(
 			this,
-			wizardContext.eventSubscription!,
+			wizardContext.eventSubscription!
 		);
 	}
 }
@@ -129,7 +129,7 @@ export class EventSubscriptionProvider extends SubscriptionTreeItem {
 async function listLocations(root: ISubscriptionRoot): Promise<Location[]> {
 	const client: SubscriptionClient = createAzureSubscriptionClient(
 		root,
-		SubscriptionClient,
+		SubscriptionClient
 	);
 	return await client.subscriptions.listLocations(root.subscriptionId);
 }
