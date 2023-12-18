@@ -3,18 +3,16 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-"use strict";
-
 const loadStartTime: number = Date.now();
 let loadEndTime: number;
 
 import * as vscode from "vscode";
 import {
 	AzureUserInput,
+	IActionContext,
 	callWithTelemetryAndErrorHandling,
 	createApiProvider,
 	createTelemetryReporter,
-	IActionContext,
 	registerCommand,
 	registerUIExtensionVariables,
 } from "vscode-azureextensionui";
@@ -24,7 +22,7 @@ import { ext } from "./extensionVariables";
 import { registerTopicCommands } from "./topic/registerTopicCommands";
 
 export async function activate(
-	context: vscode.ExtensionContext
+	context: vscode.ExtensionContext,
 ): Promise<AzureExtensionApiProvider> {
 	ext.context = context;
 	ext.reporter = createTelemetryReporter(context);
@@ -47,10 +45,10 @@ export async function activate(
 				"azureEventGrid.selectSubscriptions",
 				async () =>
 					await vscode.commands.executeCommand(
-						"azure-account.selectSubscriptions"
-					)
+						"azure-account.selectSubscriptions",
+					),
 			);
-		}
+		},
 	);
 
 	return createApiProvider([]);

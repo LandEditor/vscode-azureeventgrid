@@ -17,11 +17,11 @@ export class EndpointUrlStep<
 				await ext.ui.showInputBox({
 					placeHolder: localize(
 						"urlPlaceholder",
-						"Subscriber Endpoint"
+						"Subscriber Endpoint",
 					),
 					prompt: localize(
 						"urlPrompt",
-						"Provide a subscriber endpoint."
+						"Provide a subscriber endpoint.",
 					),
 					validateInput: this.validateInput,
 				})
@@ -32,10 +32,10 @@ export class EndpointUrlStep<
 	}
 
 	private validateInput(value: string | undefined): string | undefined {
-		if (!value) {
-			return localize("noEmpty", "Subscriber endpoint cannot be empty.");
-		} else {
+		if (value) {
 			return undefined;
+		} else {
+			return localize("noEmpty", "Subscriber endpoint cannot be empty.");
 		}
 	}
 }

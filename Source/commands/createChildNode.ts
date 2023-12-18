@@ -13,7 +13,7 @@ export async function createChildNode(
 	actionContext: IActionContext,
 	tree: AzureTreeDataProvider,
 	expectedContextValue: string,
-	node?: AzureParentTreeItem
+	node?: AzureParentTreeItem,
 ): Promise<void> {
 	if (!node) {
 		node = <AzureParentTreeItem>(

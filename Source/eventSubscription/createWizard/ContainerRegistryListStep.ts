@@ -7,10 +7,10 @@ import { ContainerRegistryManagementClient } from "azure-arm-containerregistry";
 import { Registry } from "azure-arm-containerregistry/lib/models";
 import {
 	AzureWizardPromptStep,
-	createAzureClient,
 	IAzureQuickPickItem,
 	IAzureQuickPickOptions,
 	ISubscriptionWizardContext,
+	createAzureClient,
 } from "vscode-azureextensionui";
 import { ext } from "../../extensionVariables";
 import { localize } from "../../utils/localize";
@@ -32,7 +32,7 @@ export class ContainerRegistryListStep<
 			wizardContext.registry = (
 				await ext.ui.showQuickPick(
 					this.getQuickPicks(wizardContext),
-					quickPickOptions
+					quickPickOptions,
 				)
 			).data;
 		}
@@ -41,11 +41,11 @@ export class ContainerRegistryListStep<
 	}
 
 	private async getQuickPicks(
-		wizardContext: T
+		wizardContext: T,
 	): Promise<IAzureQuickPickItem<Registry>[]> {
 		const client: ContainerRegistryManagementClient = createAzureClient(
 			wizardContext,
-			ContainerRegistryManagementClient
+			ContainerRegistryManagementClient,
 		);
 		const registries: Registry[] = await client.registries.list();
 		return registries.map((r: Registry) => {

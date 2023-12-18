@@ -8,11 +8,11 @@ import { Topic } from "azure-arm-eventgrid/lib/models";
 import {
 	AzureWizard,
 	AzureWizardPromptStep,
-	createAzureClient,
 	IAzureQuickPickItem,
 	IAzureQuickPickOptions,
 	LocationListStep,
 	ResourceGroupListStep,
+	createAzureClient,
 } from "vscode-azureextensionui";
 import { ext } from "../../extensionVariables";
 import { ITopicWizardContext } from "../../topic/createWizard/ITopicWizardContext";
@@ -27,7 +27,7 @@ export class TopicListStep<
 		if (!wizardContext.topic) {
 			const client: EventGridManagementClient = createAzureClient(
 				wizardContext,
-				EventGridManagementClient
+				EventGridManagementClient,
 			);
 			const quickPickOptions: IAzureQuickPickOptions = {
 				placeHolder: localize("topicPlaceHolder", "Select a topic"),
@@ -36,7 +36,7 @@ export class TopicListStep<
 			wizardContext.topic = (
 				await ext.ui.showQuickPick(
 					this.getQuickPicks(client.topics.listBySubscription()),
-					quickPickOptions
+					quickPickOptions,
 				)
 			).data;
 
@@ -48,7 +48,7 @@ export class TopicListStep<
 						new LocationListStep(),
 					],
 					[new TopicCreateStep()],
-					wizardContext
+					wizardContext,
 				);
 			}
 		}
@@ -57,7 +57,7 @@ export class TopicListStep<
 	}
 
 	private async getQuickPicks(
-		topicsTask: Promise<Topic[]>
+		topicsTask: Promise<Topic[]>,
 	): Promise<IAzureQuickPickItem<Topic | undefined>[]> {
 		const picks: IAzureQuickPickItem<Topic | undefined>[] = [
 			{
@@ -77,7 +77,7 @@ export class TopicListStep<
 					description: "",
 					data: t,
 				};
-			})
+			}),
 		);
 	}
 }

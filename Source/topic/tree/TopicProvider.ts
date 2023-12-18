@@ -8,11 +8,11 @@ import { Topic, TopicsListResult } from "azure-arm-eventgrid/lib/models";
 import * as vscode from "vscode";
 import {
 	AzureWizard,
-	createAzureClient,
 	IActionContext,
 	LocationListStep,
 	ResourceGroupListStep,
 	SubscriptionTreeItem,
+	createAzureClient,
 } from "vscode-azureextensionui";
 import { localize } from "../../utils/localize";
 import { ITopicWizardContext } from "../createWizard/ITopicWizardContext";
@@ -28,11 +28,11 @@ export class TopicProvider extends SubscriptionTreeItem {
 	}
 
 	public async loadMoreChildrenImpl(
-		_clearCache: boolean
+		_clearCache: boolean,
 	): Promise<TopicTreeItem[]> {
 		const client: EventGridManagementClient = createAzureClient(
 			this.root,
-			EventGridManagementClient
+			EventGridManagementClient,
 		);
 		const topics: TopicsListResult =
 			await client.topics.listBySubscription();
@@ -41,7 +41,7 @@ export class TopicProvider extends SubscriptionTreeItem {
 
 	public async createChildImpl(
 		showCreatingNode: (label: string) => void,
-		actionContext?: IActionContext
+		actionContext?: IActionContext,
 	): Promise<TopicTreeItem> {
 		const wizardContext: ITopicWizardContext = Object.assign({}, this.root);
 
@@ -52,7 +52,7 @@ export class TopicProvider extends SubscriptionTreeItem {
 				new LocationListStep(),
 			],
 			[new TopicCreateStep()],
-			wizardContext
+			wizardContext,
 		);
 
 		// https://github.com/Microsoft/vscode-azuretools/issues/120
@@ -67,14 +67,14 @@ export class TopicProvider extends SubscriptionTreeItem {
 		const message: string = localize(
 			"creatingTopic",
 			'Creating topic "{0}"...',
-			wizardContext.newTopicName
+			wizardContext.newTopicName,
 		);
 		await vscode.window.withProgress(
 			{ title: message, location: vscode.ProgressLocation.Notification },
 			async () => {
 				// tslint:disable-next-line:no-non-null-assertion
 				await wizard.execute(actionContext!);
-			}
+			},
 		);
 		// tslint:disable-next-line:no-non-null-assertion
 		return new TopicTreeItem(this, wizardContext.topic!);

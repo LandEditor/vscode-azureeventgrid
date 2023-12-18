@@ -17,7 +17,7 @@ jsf.extend("chance", () => {
 });
 
 export async function generateEvents(
-	uri: Uri
+	uri: Uri,
 ): Promise<[{}[], IMockEventGenerator]> {
 	const doc: TextDocument = await workspace.openTextDocument(uri);
 	const eventGenerator: IMockEventGenerator = <IMockEventGenerator>(
@@ -30,7 +30,7 @@ export async function generateEvents(
 	}
 
 	const events: Promise<{}>[] = [];
-	let count: number = 0;
+	let count = 0;
 	// tslint:disable-next-line:strict-boolean-expressions
 	const numberOfEvents: number = eventGenerator.numberOfEvents || 1;
 	while (count < numberOfEvents) {

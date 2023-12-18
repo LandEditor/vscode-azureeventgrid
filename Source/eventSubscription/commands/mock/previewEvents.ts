@@ -5,8 +5,8 @@
 
 import { Uri, window } from "vscode";
 import { fsUtils } from "../../../utils/fsUtils";
-import { generateEvents } from "./generateEvents";
 import { IMockEventGenerator } from "./IMockEventGenerator";
+import { generateEvents } from "./generateEvents";
 
 export async function previewEvents(uri: Uri): Promise<void> {
 	const [events]: [{}[], IMockEventGenerator] = await generateEvents(uri);
@@ -19,6 +19,6 @@ export async function previewEvents(uri: Uri): Promise<void> {
 		JSON.stringify(events, undefined, 2),
 		"eventsPreview",
 		".json",
-		viewColumn
+		viewColumn,
 	);
 }

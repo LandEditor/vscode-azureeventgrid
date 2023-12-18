@@ -19,7 +19,7 @@ export class MockCodeLensProvider implements CodeLensProvider {
 
 	public async provideCodeLenses(
 		document: TextDocument,
-		_token: CancellationToken
+		_token: CancellationToken,
 	): Promise<CodeLens[]> {
 		return [
 			{

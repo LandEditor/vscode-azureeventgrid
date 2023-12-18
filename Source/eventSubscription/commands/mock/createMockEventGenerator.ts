@@ -3,8 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import * as fse from "fs-extra";
 import * as path from "path";
+import * as fse from "fs-extra";
 import { IActionContext, IAzureQuickPickItem } from "vscode-azureextensionui";
 import { ext } from "../../../extensionVariables";
 import { fsUtils } from "../../../utils/fsUtils";
@@ -26,7 +26,7 @@ export enum EventType {
 
 export async function createMockEventGenerator(
 	actionContext: IActionContext,
-	node?: EventSubscriptionTreeItem
+	node?: EventSubscriptionTreeItem,
 ): Promise<void> {
 	let eventType: string;
 	let topic: string;
@@ -97,7 +97,7 @@ export async function createMockEventGenerator(
 	}
 
 	const templatesPath: string = ext.context.asAbsolutePath(
-		path.join("resources", "templates")
+		path.join("resources", "templates"),
 	);
 	const eventSchema: IEventSchema = <IEventSchema>(
 		await fse.readJson(path.join(templatesPath, "Event.json"))
@@ -105,7 +105,7 @@ export async function createMockEventGenerator(
 	if (schemaFileName) {
 		eventSchema.properties.data = <{}>(
 			await fse.readJson(
-				path.join(templatesPath, `${schemaFileName}.json`)
+				path.join(templatesPath, `${schemaFileName}.json`),
 			)
 		);
 	}
@@ -113,14 +113,14 @@ export async function createMockEventGenerator(
 	eventSchema.properties.topic.default = topic;
 	eventSchema.properties.eventType.pattern = `${eventType.replace(
 		".",
-		"\\."
+		"\\.",
 	)}\\.${eventSubTypePattern}`;
 	eventSchema.properties.subject.pattern = subjectPattern;
 
 	const definitionsPath: string = path.join(
 		templatesPath,
 		"definitions",
-		`${schemaFileName}.json`
+		`${schemaFileName}.json`,
 	);
 	if (await fse.pathExists(definitionsPath)) {
 		eventSchema.definitions = <{}>await fse.readJson(definitionsPath);
@@ -139,7 +139,7 @@ export async function createMockEventGenerator(
 	await fsUtils.showNewFile(
 		JSON.stringify(eventGenerator, undefined, 2),
 		fileName,
-		".eventGenerator.json"
+		".eventGenerator.json",
 	);
 }
 
@@ -152,7 +152,7 @@ export function getEventTypeFromTopic(topic: string): EventType {
 	} else {
 		const result: RegExpExecArray | null =
 			/^\/subscriptions\/.*\/resourceGroups\/.*\/providers\/(.*)\/[^\/]+$/i.exec(
-				topic
+				topic,
 			);
 		if (result && result.length > 1) {
 			switch (result[1].toLowerCase()) {
@@ -173,8 +173,8 @@ export function getEventTypeFromTopic(topic: string): EventType {
 		throw new Error(
 			localize(
 				"unsupportedType",
-				"The topic type for this Event Subscription is not yet supported."
-			)
+				"The topic type for this Event Subscription is not yet supported.",
+			),
 		);
 	}
 }
@@ -187,7 +187,7 @@ export async function promptForEventType(): Promise<EventType> {
 				description: EventType[key],
 				data: EventType[key],
 			};
-		}
+		},
 	);
 
 	return (

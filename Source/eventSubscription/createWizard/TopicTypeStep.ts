@@ -33,11 +33,11 @@ export enum TopicType {
 
 export class TopicTypeStep extends AzureWizardPromptStep<IEventSubscriptionWizardContext> {
 	public async prompt(
-		wizardContext: IEventSubscriptionWizardContext
+		wizardContext: IEventSubscriptionWizardContext,
 	): Promise<IEventSubscriptionWizardContext> {
 		if (wizardContext.topicType === undefined) {
 			const picks: IAzureQuickPickItem<TopicType>[] = Object.keys(
-				TopicType
+				TopicType,
 			).map((key: string) => {
 				return {
 					label: TopicType[key],
@@ -66,11 +66,11 @@ export class TopicTypeStep extends AzureWizardPromptStep<IEventSubscriptionWizar
 								{
 									kind: [StorageAccountKind.Storage],
 									learnMoreLink: "https://aka.ms/H257ds",
-								}
+								},
 							),
 						],
 						[],
-						wizardContext
+						wizardContext,
 					);
 					break;
 				case TopicType.Subscription:
@@ -80,35 +80,35 @@ export class TopicTypeStep extends AzureWizardPromptStep<IEventSubscriptionWizar
 					this.subWizard = new AzureWizard(
 						[new ResourceGroupListStep()],
 						[],
-						wizardContext
+						wizardContext,
 					);
 					break;
 				case TopicType.EventGridTopic:
 					this.subWizard = new AzureWizard(
 						[new TopicListStep()],
 						[],
-						wizardContext
+						wizardContext,
 					);
 					break;
 				case TopicType.ContainerRegistry:
 					this.subWizard = new AzureWizard(
 						[new ContainerRegistryListStep()],
 						[],
-						wizardContext
+						wizardContext,
 					);
 					break;
 				case TopicType.EventHubsNamespace:
 					this.subWizard = new AzureWizard(
 						[new EventHubsNamespaceListStep()],
 						[],
-						wizardContext
+						wizardContext,
 					);
 					break;
 				case TopicType.IoTHub:
 					this.subWizard = new AzureWizard(
 						[new IoTHubListStep()],
 						[],
-						wizardContext
+						wizardContext,
 					);
 					break;
 				default:
@@ -116,8 +116,8 @@ export class TopicTypeStep extends AzureWizardPromptStep<IEventSubscriptionWizar
 						localize(
 							"unrecognizedTopicType",
 							'Unrecognized topic type "{0}".',
-							wizardContext.topicType
-						)
+							wizardContext.topicType,
+						),
 					);
 			}
 		}
