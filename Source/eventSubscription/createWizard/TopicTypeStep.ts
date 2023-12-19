@@ -53,7 +53,7 @@ export class TopicTypeStep extends AzureWizardPromptStep<IEventSubscriptionWizar
 			).data;
 
 			switch (wizardContext.topicType) {
-				case TopicType.StorageAccount:
+				case TopicType.StorageAccount: {
 					this.subWizard = new AzureWizard(
 						[
 							new StorageAccountListStep(
@@ -73,44 +73,50 @@ export class TopicTypeStep extends AzureWizardPromptStep<IEventSubscriptionWizar
 						wizardContext,
 					);
 					break;
+				}
 				case TopicType.Subscription:
 					// no subWizard necessary
 					break;
-				case TopicType.ResourceGroup:
+				case TopicType.ResourceGroup: {
 					this.subWizard = new AzureWizard(
 						[new ResourceGroupListStep()],
 						[],
 						wizardContext,
 					);
 					break;
-				case TopicType.EventGridTopic:
+				}
+				case TopicType.EventGridTopic: {
 					this.subWizard = new AzureWizard(
 						[new TopicListStep()],
 						[],
 						wizardContext,
 					);
 					break;
-				case TopicType.ContainerRegistry:
+				}
+				case TopicType.ContainerRegistry: {
 					this.subWizard = new AzureWizard(
 						[new ContainerRegistryListStep()],
 						[],
 						wizardContext,
 					);
 					break;
-				case TopicType.EventHubsNamespace:
+				}
+				case TopicType.EventHubsNamespace: {
 					this.subWizard = new AzureWizard(
 						[new EventHubsNamespaceListStep()],
 						[],
 						wizardContext,
 					);
 					break;
-				case TopicType.IoTHub:
+				}
+				case TopicType.IoTHub: {
 					this.subWizard = new AzureWizard(
 						[new IoTHubListStep()],
 						[],
 						wizardContext,
 					);
 					break;
+				}
 				default:
 					throw new RangeError(
 						localize(

@@ -31,9 +31,9 @@ export class TopicCreateStep<
 			);
 			// tslint:disable-next-line:no-non-null-assertion
 			wizardContext.topic = await client.topics.createOrUpdate(
-				wizardContext.resourceGroup!.name!,
+				wizardContext.resourceGroup?.name!,
 				wizardContext.newTopicName!,
-				{ location: wizardContext.location!.name! },
+				{ location: wizardContext.location?.name! },
 			);
 			const message: string = localize(
 				"created",

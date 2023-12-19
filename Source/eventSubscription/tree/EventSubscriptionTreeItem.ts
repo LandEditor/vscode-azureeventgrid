@@ -31,9 +31,11 @@ export class EventSubscriptionTreeItem extends AzureTreeItem {
 	) {
 		super(parent);
 		if (
-			!eventSubscription.id ||
-			!eventSubscription.name ||
-			!eventSubscription.topic
+			!(
+				eventSubscription.id &&
+				eventSubscription.name &&
+				eventSubscription.topic
+			)
 		) {
 			throw new ArgumentError(eventSubscription);
 		}

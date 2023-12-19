@@ -38,7 +38,7 @@ export namespace fsUtils {
 			const editorExists: boolean = workspace.textDocuments.some(
 				(doc: TextDocument) => isPathEqual(doc.uri.fsPath, fullPath),
 			);
-			if (!pathExists && !editorExists) {
+			if (!(pathExists || editorExists)) {
 				return fullFileName;
 			}
 

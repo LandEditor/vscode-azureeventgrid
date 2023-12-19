@@ -59,39 +59,45 @@ export async function createMockEventGenerator(
 	let eventSubTypePattern: string;
 	let subjectPattern: string;
 	switch (eventType) {
-		case EventType.Storage:
+		case EventType.Storage: {
 			schemaFileName = "Storage";
 			eventSubTypePattern = "Blob(Created|Deleted)";
 			subjectPattern =
 				"/blobServices/default/containers/[a-zA-Z0-9]+/blobs/[a-zA-Z0-9]+";
 			break;
-		case EventType.Resources:
+		}
+		case EventType.Resources: {
 			schemaFileName = "Resource";
 			eventSubTypePattern =
 				"Resource(Write|Delete)(Success|Failure|Cancel)";
 			subjectPattern =
 				"/subscriptions/[a-zA-Z0-9]+/resourceGroups/[a-zA-Z0-9]+/providers/Microsoft\\.[a-zA-Z0-9]+/[a-zA-Z0-9]+";
 			break;
-		case EventType.ContainerRegistry:
+		}
+		case EventType.ContainerRegistry: {
 			schemaFileName = "ContainerRegistry";
 			eventSubTypePattern = "Image(Pushed|Deleted)";
 			subjectPattern = "[a-zA-Z0-9]+:[0-9]\\.[0-9]\\.[0-9]";
 			break;
-		case EventType.Devices:
+		}
+		case EventType.Devices: {
 			schemaFileName = "IotHub";
 			eventSubTypePattern = "Device(Created|Deleted)";
 			subjectPattern = "devices/[a-zA-Z0-9]+";
 			break;
-		case EventType.EventHub:
+		}
+		case EventType.EventHub: {
 			schemaFileName = "EventHub";
 			eventSubTypePattern = "CaptureFileCreated";
 			// Get the event hub name from the topic id and use that as the subject
 			subjectPattern = topic.substring(topic.lastIndexOf("/") + 1);
 			break;
-		case EventType.Custom:
+		}
+		case EventType.Custom: {
 			eventSubTypePattern = "[a-zA-Z0-9]+";
 			subjectPattern = "[a-zA-Z0-9]+";
 			break;
+		}
 		default:
 			throw new RangeError();
 	}
