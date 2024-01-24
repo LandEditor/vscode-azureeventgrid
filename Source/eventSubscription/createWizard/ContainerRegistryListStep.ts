@@ -4,12 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { ContainerRegistryManagementClient } from "azure-arm-containerregistry";
-import { Registry } from "azure-arm-containerregistry/lib/models";
+import type { Registry } from "azure-arm-containerregistry/lib/models";
 import {
 	AzureWizardPromptStep,
-	IAzureQuickPickItem,
-	IAzureQuickPickOptions,
-	ISubscriptionWizardContext,
+	type IAzureQuickPickItem,
+	type IAzureQuickPickOptions,
+	type ISubscriptionWizardContext,
 	createAzureClient,
 } from "vscode-azureextensionui";
 import { ext } from "../../extensionVariables";

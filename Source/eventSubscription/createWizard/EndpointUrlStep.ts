@@ -6,7 +6,7 @@
 import { AzureWizardPromptStep } from "vscode-azureextensionui";
 import { ext } from "../../extensionVariables";
 import { localize } from "../../utils/localize";
-import { IEndpointUrlWizardContext } from "./IEndpointUrlWizardContext";
+import type { IEndpointUrlWizardContext } from "./IEndpointUrlWizardContext";
 
 export class EndpointUrlStep<
 	T extends IEndpointUrlWizardContext,

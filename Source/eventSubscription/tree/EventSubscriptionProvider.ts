@@ -4,14 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { EventGridManagementClient } from "azure-arm-eventgrid";
-import { EventSubscription } from "azure-arm-eventgrid/lib/models";
+import type { EventSubscription } from "azure-arm-eventgrid/lib/models";
 import { SubscriptionClient } from "azure-arm-resource";
-import { Location } from "azure-arm-resource/lib/subscription/models";
+import type { Location } from "azure-arm-resource/lib/subscription/models";
 import * as vscode from "vscode";
 import {
 	AzureWizard,
-	IActionContext,
-	ISubscriptionRoot,
+	type IActionContext,
+	type ISubscriptionRoot,
 	SubscriptionTreeItem,
 	createAzureClient,
 	createAzureSubscriptionClient,
@@ -21,7 +21,7 @@ import { localize } from "../../utils/localize";
 import { EndpointUrlStep } from "../createWizard/EndpointUrlStep";
 import { EventSubscriptionCreateStep } from "../createWizard/EventSubscriptionCreateStep";
 import { EventSubscriptionNameStep } from "../createWizard/EventSubscriptionNameStep";
-import { IEventSubscriptionWizardContext } from "../createWizard/IEventSubscriptionWizardContext";
+import type { IEventSubscriptionWizardContext } from "../createWizard/IEventSubscriptionWizardContext";
 import { TopicTypeStep } from "../createWizard/TopicTypeStep";
 import { EventSubscriptionTreeItem } from "./EventSubscriptionTreeItem";
 

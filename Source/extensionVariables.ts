@@ -3,8 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { ExtensionContext, OutputChannel } from "vscode";
-import {
+import type { ExtensionContext, OutputChannel } from "vscode";
+import type {
 	AzureTreeDataProvider,
 	IAzureUserInput,
 	ITelemetryReporter,

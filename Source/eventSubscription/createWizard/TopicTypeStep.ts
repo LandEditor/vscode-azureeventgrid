@@ -6,7 +6,7 @@
 import {
 	AzureWizard,
 	AzureWizardPromptStep,
-	IAzureQuickPickItem,
+	type IAzureQuickPickItem,
 	ResourceGroupListStep,
 	StorageAccountKind,
 	StorageAccountListStep,
@@ -17,7 +17,7 @@ import { ext } from "../../extensionVariables";
 import { localize } from "../../utils/localize";
 import { ContainerRegistryListStep } from "./ContainerRegistryListStep";
 import { EventHubsNamespaceListStep } from "./EventHubsNamespaceListStep";
-import { IEventSubscriptionWizardContext } from "./IEventSubscriptionWizardContext";
+import type { IEventSubscriptionWizardContext } from "./IEventSubscriptionWizardContext";
 import { IoTHubListStep } from "./IoTHubListStep";
 import { TopicListStep } from "./TopicListStep";
 

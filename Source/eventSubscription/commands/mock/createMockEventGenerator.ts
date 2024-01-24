@@ -3,17 +3,20 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import * as path from "path";
+import * as path from "node:path";
 import * as fse from "fs-extra";
-import { IActionContext, IAzureQuickPickItem } from "vscode-azureextensionui";
+import type {
+	IActionContext,
+	IAzureQuickPickItem,
+} from "vscode-azureextensionui";
 import { ext } from "../../../extensionVariables";
 import { fsUtils } from "../../../utils/fsUtils";
 import { localize } from "../../../utils/localize";
 import { EndpointUrlStep } from "../../createWizard/EndpointUrlStep";
-import { IEndpointUrlWizardContext } from "../../createWizard/IEndpointUrlWizardContext";
-import { EventSubscriptionTreeItem } from "../../tree/EventSubscriptionTreeItem";
-import { IEventSchema } from "./IEventSchema";
-import { IMockEventGenerator } from "./IMockEventGenerator";
+import type { IEndpointUrlWizardContext } from "../../createWizard/IEndpointUrlWizardContext";
+import type { EventSubscriptionTreeItem } from "../../tree/EventSubscriptionTreeItem";
+import type { IEventSchema } from "./IEventSchema";
+import type { IMockEventGenerator } from "./IMockEventGenerator";
 
 export enum EventType {
 	Storage = "Microsoft.Storage",

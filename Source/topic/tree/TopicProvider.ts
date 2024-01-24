@@ -4,18 +4,18 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { EventGridManagementClient } from "azure-arm-eventgrid";
-import { Topic, TopicsListResult } from "azure-arm-eventgrid/lib/models";
+import type { Topic, TopicsListResult } from "azure-arm-eventgrid/lib/models";
 import * as vscode from "vscode";
 import {
 	AzureWizard,
-	IActionContext,
+	type IActionContext,
 	LocationListStep,
 	ResourceGroupListStep,
 	SubscriptionTreeItem,
 	createAzureClient,
 } from "vscode-azureextensionui";
 import { localize } from "../../utils/localize";
-import { ITopicWizardContext } from "../createWizard/ITopicWizardContext";
+import type { ITopicWizardContext } from "../createWizard/ITopicWizardContext";
 import { TopicCreateStep } from "../createWizard/TopicCreateStep";
 import { TopicNameStep } from "../createWizard/TopicNameStep";
 import { TopicTreeItem } from "./TopicTreeItem";

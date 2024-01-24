@@ -5,10 +5,10 @@
 
 import * as vscode from "vscode";
 import {
-	AzureParentTreeItem,
+	type AzureParentTreeItem,
 	AzureTreeDataProvider,
-	AzureTreeItem,
-	IActionContext,
+	type AzureTreeItem,
+	type IActionContext,
 	SubscriptionTreeItem,
 	registerCommand,
 } from "vscode-azureextensionui";

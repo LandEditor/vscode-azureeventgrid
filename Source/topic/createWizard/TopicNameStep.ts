@@ -10,7 +10,7 @@ import {
 } from "vscode-azureextensionui";
 import { ext } from "../../extensionVariables";
 import { localize } from "../../utils/localize";
-import { ITopicWizardContext } from "./ITopicWizardContext";
+import type { ITopicWizardContext } from "./ITopicWizardContext";
 
 export class TopicNameStep<
 	T extends ITopicWizardContext,

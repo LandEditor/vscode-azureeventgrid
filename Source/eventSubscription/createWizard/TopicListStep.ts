@@ -4,18 +4,18 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { EventGridManagementClient } from "azure-arm-eventgrid";
-import { Topic } from "azure-arm-eventgrid/lib/models";
+import type { Topic } from "azure-arm-eventgrid/lib/models";
 import {
 	AzureWizard,
 	AzureWizardPromptStep,
-	IAzureQuickPickItem,
-	IAzureQuickPickOptions,
+	type IAzureQuickPickItem,
+	type IAzureQuickPickOptions,
 	LocationListStep,
 	ResourceGroupListStep,
 	createAzureClient,
 } from "vscode-azureextensionui";
 import { ext } from "../../extensionVariables";
-import { ITopicWizardContext } from "../../topic/createWizard/ITopicWizardContext";
+import type { ITopicWizardContext } from "../../topic/createWizard/ITopicWizardContext";
 import { TopicCreateStep } from "../../topic/createWizard/TopicCreateStep";
 import { TopicNameStep } from "../../topic/createWizard/TopicNameStep";
 import { localize } from "../../utils/localize";

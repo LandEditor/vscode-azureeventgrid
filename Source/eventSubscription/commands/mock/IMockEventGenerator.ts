@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { IEventSchema } from "./IEventSchema";
+import type { IEventSchema } from "./IEventSchema";
 
 export interface IMockEventGenerator {
 	destination?: {

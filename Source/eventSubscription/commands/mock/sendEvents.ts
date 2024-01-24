@@ -4,14 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { EventGridManagementClient } from "azure-arm-eventgrid";
-import { EventSubscriptionFullUrl } from "azure-arm-eventgrid/lib/models";
+import type { EventSubscriptionFullUrl } from "azure-arm-eventgrid/lib/models";
 import * as requestP from "request-promise";
-import { Progress, ProgressLocation, Uri, window } from "vscode";
+import { type Progress, ProgressLocation, type Uri, window } from "vscode";
 import { createAzureClient } from "vscode-azureextensionui";
 import { ext } from "../../../extensionVariables";
 import { localize } from "../../../utils/localize";
-import { EventSubscriptionTreeItem } from "../../tree/EventSubscriptionTreeItem";
-import { IMockEventGenerator } from "../mock/IMockEventGenerator";
+import type { EventSubscriptionTreeItem } from "../../tree/EventSubscriptionTreeItem";
+import type { IMockEventGenerator } from "../mock/IMockEventGenerator";
 import { generateEvents } from "./generateEvents";
 
 export async function sendEvents(uri: Uri): Promise<void> {

@@ -4,12 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { IotHubClient } from "azure-arm-iothub";
-import { IotHubDescription } from "azure-arm-iothub/lib/models";
+import type { IotHubDescription } from "azure-arm-iothub/lib/models";
 import {
 	AzureWizardPromptStep,
-	IAzureQuickPickItem,
-	IAzureQuickPickOptions,
-	ISubscriptionWizardContext,
+	type IAzureQuickPickItem,
+	type IAzureQuickPickOptions,
+	type ISubscriptionWizardContext,
 	createAzureClient,
 } from "vscode-azureextensionui";
 import { ext } from "../../extensionVariables";

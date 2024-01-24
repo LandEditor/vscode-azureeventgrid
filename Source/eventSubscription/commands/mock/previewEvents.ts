@@ -3,9 +3,9 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { Uri, window } from "vscode";
+import { type Uri, window } from "vscode";
 import { fsUtils } from "../../../utils/fsUtils";
-import { IMockEventGenerator } from "./IMockEventGenerator";
+import type { IMockEventGenerator } from "./IMockEventGenerator";
 import { generateEvents } from "./generateEvents";
 
 export async function previewEvents(uri: Uri): Promise<void> {

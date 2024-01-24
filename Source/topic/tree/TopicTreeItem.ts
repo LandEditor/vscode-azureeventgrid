@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { EventGridManagementClient } from "azure-arm-eventgrid";
-import { Topic } from "azure-arm-eventgrid/lib/models";
+import type { Topic } from "azure-arm-eventgrid/lib/models";
 import * as vscode from "vscode";
 import {
 	AzureTreeItem,
@@ -16,7 +16,7 @@ import { azureUtils } from "../../utils/azureUtils";
 import { ArgumentError } from "../../utils/errors";
 import { localize } from "../../utils/localize";
 import { treeUtils } from "../../utils/treeUtils";
-import { TopicProvider } from "./TopicProvider";
+import type { TopicProvider } from "./TopicProvider";
 
 export class TopicTreeItem extends AzureTreeItem {
 	public static contextValue = "azureEventGridTopic";

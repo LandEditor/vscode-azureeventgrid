@@ -4,13 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 
 import {
-	CancellationToken,
-	CodeLens,
-	CodeLensProvider,
-	Event,
+	type CancellationToken,
+	type CodeLens,
+	type CodeLensProvider,
+	type Event,
 	Position,
 	Range,
-	TextDocument,
+	type TextDocument,
 } from "vscode";
 import { localize } from "../../../utils/localize";
 

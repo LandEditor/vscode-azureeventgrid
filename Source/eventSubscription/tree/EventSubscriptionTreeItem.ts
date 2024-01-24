@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { EventGridManagementClient } from "azure-arm-eventgrid";
-import { EventSubscription } from "azure-arm-eventgrid/lib/models";
+import type { EventSubscription } from "azure-arm-eventgrid/lib/models";
 import * as vscode from "vscode";
 import {
 	AzureTreeItem,
@@ -15,7 +15,7 @@ import { ext } from "../../extensionVariables";
 import { ArgumentError } from "../../utils/errors";
 import { localize } from "../../utils/localize";
 import { treeUtils } from "../../utils/treeUtils";
-import { EventSubscriptionProvider } from "./EventSubscriptionProvider";
+import type { EventSubscriptionProvider } from "./EventSubscriptionProvider";
 
 export class EventSubscriptionTreeItem extends AzureTreeItem {
 	public static contextValue = "azureEventGridSubscription";

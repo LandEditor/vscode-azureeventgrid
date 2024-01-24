@@ -3,7 +3,10 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { AzureTreeDataProvider, AzureTreeItem } from "vscode-azureextensionui";
+import type {
+	AzureTreeDataProvider,
+	AzureTreeItem,
+} from "vscode-azureextensionui";
 
 export async function deleteNode(
 	tree: AzureTreeDataProvider,

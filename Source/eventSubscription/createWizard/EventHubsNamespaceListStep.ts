@@ -4,12 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { EventHubManagementClient } from "azure-arm-eventhub";
-import { EHNamespace, Eventhub } from "azure-arm-eventhub/lib/models";
+import type { EHNamespace, Eventhub } from "azure-arm-eventhub/lib/models";
 import {
 	AzureWizardPromptStep,
-	IAzureQuickPickItem,
-	IAzureQuickPickOptions,
-	ISubscriptionWizardContext,
+	type IAzureQuickPickItem,
+	type IAzureQuickPickOptions,
+	type ISubscriptionWizardContext,
 	createAzureClient,
 } from "vscode-azureextensionui";
 import { ext } from "../../extensionVariables";

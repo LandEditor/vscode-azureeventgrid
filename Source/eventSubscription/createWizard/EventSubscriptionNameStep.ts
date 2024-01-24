@@ -10,7 +10,7 @@ import {
 } from "vscode-azureextensionui";
 import { ext } from "../../extensionVariables";
 import { localize } from "../../utils/localize";
-import { IEventSubscriptionWizardContext } from "./IEventSubscriptionWizardContext";
+import type { IEventSubscriptionWizardContext } from "./IEventSubscriptionWizardContext";
 
 export class EventSubscriptionNameStep extends AzureNameStep<IEventSubscriptionWizardContext> {
 	public async prompt(

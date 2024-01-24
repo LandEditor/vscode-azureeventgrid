@@ -4,21 +4,21 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { EventGridManagementClient } from "azure-arm-eventgrid";
-import { WebHookEventSubscriptionDestination } from "azure-arm-eventgrid/lib/models";
+import type { WebHookEventSubscriptionDestination } from "azure-arm-eventgrid/lib/models";
 import * as vscode from "vscode";
 import {
 	AzureWizardExecuteStep,
-	IResourceGroupWizardContext,
-	IStorageAccountWizardContext,
+	type IResourceGroupWizardContext,
+	type IStorageAccountWizardContext,
 	createAzureClient,
 } from "vscode-azureextensionui";
 import { ext } from "../../extensionVariables";
-import { ITopicWizardContext } from "../../topic/createWizard/ITopicWizardContext";
+import type { ITopicWizardContext } from "../../topic/createWizard/ITopicWizardContext";
 import { localize } from "../../utils/localize";
-import { IContainerRegistryWizardContext } from "./ContainerRegistryListStep";
-import { IEventHubsNamespaceWizardContext } from "./EventHubsNamespaceListStep";
-import { IEventSubscriptionWizardContext } from "./IEventSubscriptionWizardContext";
-import { IIoTHubWizardContext } from "./IoTHubListStep";
+import type { IContainerRegistryWizardContext } from "./ContainerRegistryListStep";
+import type { IEventHubsNamespaceWizardContext } from "./EventHubsNamespaceListStep";
+import type { IEventSubscriptionWizardContext } from "./IEventSubscriptionWizardContext";
+import type { IIoTHubWizardContext } from "./IoTHubListStep";
 import { TopicType } from "./TopicTypeStep";
 
 export class EventSubscriptionCreateStep extends AzureWizardExecuteStep<IEventSubscriptionWizardContext> {

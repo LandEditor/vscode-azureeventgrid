@@ -9,14 +9,14 @@ let loadEndTime: number;
 import * as vscode from "vscode";
 import {
 	AzureUserInput,
-	IActionContext,
+	type IActionContext,
 	callWithTelemetryAndErrorHandling,
 	createApiProvider,
 	createTelemetryReporter,
 	registerCommand,
 	registerUIExtensionVariables,
 } from "vscode-azureextensionui";
-import { AzureExtensionApiProvider } from "vscode-azureextensionui/api";
+import type { AzureExtensionApiProvider } from "vscode-azureextensionui/api";
 import { registerEventSubscriptionCommands } from "./eventSubscription/registerEventSubscriptionCommands";
 import { ext } from "./extensionVariables";
 import { registerTopicCommands } from "./topic/registerTopicCommands";

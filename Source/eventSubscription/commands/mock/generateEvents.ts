@@ -3,8 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { TextDocument, Uri, workspace } from "vscode";
-import { IMockEventGenerator } from "../mock/IMockEventGenerator";
+import { type TextDocument, type Uri, workspace } from "vscode";
+import type { IMockEventGenerator } from "../mock/IMockEventGenerator";
 
 // tslint:disable-next-line:no-require-imports
 import Chance = require("chance");
