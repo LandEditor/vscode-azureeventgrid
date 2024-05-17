@@ -1,27 +1,7 @@
 {
 	"name": "vscode-azureeventgrid",
 	"displayName": "Azure Event Grid (deprecated)",
-	"version": "0.0.1",
-	"private": false,
 	"description": "%extension.description%",
-	"keywords": [
-		"land"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandAzureEventGrid#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandAzureEventGrid/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/LandAzureEventGrid.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "🛬 Land —",
-		"email": "Land@PlayForm.Cloud",
-		"url": "HTTPS://Land.PlayForm.Cloud"
-	},
-	"type": "module",
 	"main": "./out/src/extension",
 	"scripts": {
 		"Document": "Document 'Source/**/*.ts'",
@@ -363,7 +343,6 @@
 	},
 	"devDependencies": {
 		"@playform/build": "0.0.7",
-		"@playform/document": "0.0.6",
 		"@types/chance": "1.1.6",
 		"@types/fs-extra": "11.0.4",
 		"@types/node": "20.12.10",
@@ -372,9 +351,6 @@
 	"extensionDependencies": [
 		"ms-vscode.azure-account"
 	],
-	"publishConfig": {
-		"access": "public"
-	},
 	"icon": "resources/azureEventGrid.png",
 	"galleryBanner": {
 		"color": "#002050",
