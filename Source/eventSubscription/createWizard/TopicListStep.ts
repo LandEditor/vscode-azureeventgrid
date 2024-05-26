@@ -3,56 +3,81 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { EventGridManagementClient } from 'azure-arm-eventgrid';
-import { Topic } from 'azure-arm-eventgrid/lib/models';
-import { AzureWizard, AzureWizardPromptStep, createAzureClient, IAzureQuickPickItem, IAzureQuickPickOptions, LocationListStep, ResourceGroupListStep } from 'vscode-azureextensionui';
-import { ext } from '../../extensionVariables';
-import { ITopicWizardContext } from '../../topic/createWizard/ITopicWizardContext';
-import { TopicCreateStep } from '../../topic/createWizard/TopicCreateStep';
-import { TopicNameStep } from '../../topic/createWizard/TopicNameStep';
-import { localize } from '../../utils/localize';
+import { EventGridManagementClient } from "azure-arm-eventgrid";
+import type { Topic } from "azure-arm-eventgrid/lib/models";
+import {
+	AzureWizard,
+	AzureWizardPromptStep,
+	type IAzureQuickPickItem,
+	type IAzureQuickPickOptions,
+	LocationListStep,
+	ResourceGroupListStep,
+	createAzureClient,
+} from "vscode-azureextensionui";
+import { ext } from "../../extensionVariables";
+import type { ITopicWizardContext } from "../../topic/createWizard/ITopicWizardContext";
+import { TopicCreateStep } from "../../topic/createWizard/TopicCreateStep";
+import { TopicNameStep } from "../../topic/createWizard/TopicNameStep";
+import { localize } from "../../utils/localize";
 
-export class TopicListStep<T extends ITopicWizardContext> extends AzureWizardPromptStep<T> {
-    public async prompt(wizardContext: T): Promise<T> {
-        if (!wizardContext.topic) {
-            const client: EventGridManagementClient = createAzureClient(wizardContext, EventGridManagementClient);
-            const quickPickOptions: IAzureQuickPickOptions = { placeHolder: localize('topicPlaceHolder', 'Select a topic'), id: `TopicListStep/${wizardContext.subscriptionId}` };
-            wizardContext.topic = (await ext.ui.showQuickPick(this.getQuickPicks(client.topics.listBySubscription()), quickPickOptions)).data;
+export class TopicListStep<
+	T extends ITopicWizardContext,
+> extends AzureWizardPromptStep<T> {
+	public async prompt(wizardContext: T): Promise<T> {
+		if (!wizardContext.topic) {
+			const client: EventGridManagementClient = createAzureClient(
+				wizardContext,
+				EventGridManagementClient,
+			);
+			const quickPickOptions: IAzureQuickPickOptions = {
+				placeHolder: localize("topicPlaceHolder", "Select a topic"),
+				id: `TopicListStep/${wizardContext.subscriptionId}`,
+			};
+			wizardContext.topic = (
+				await ext.ui.showQuickPick(
+					this.getQuickPicks(client.topics.listBySubscription()),
+					quickPickOptions,
+				)
+			).data;
 
-            if (!wizardContext.topic) {
-                this.subWizard = new AzureWizard(
-                    [
-                        new TopicNameStep(),
-                        new ResourceGroupListStep(),
-                        new LocationListStep()
-                    ],
-                    [
-                        new TopicCreateStep()
-                    ],
-                    wizardContext
-                );
-            }
-        }
+			if (!wizardContext.topic) {
+				this.subWizard = new AzureWizard(
+					[
+						new TopicNameStep(),
+						new ResourceGroupListStep(),
+						new LocationListStep(),
+					],
+					[new TopicCreateStep()],
+					wizardContext,
+				);
+			}
+		}
 
-        return wizardContext;
-    }
+		return wizardContext;
+	}
 
-    private async getQuickPicks(topicsTask: Promise<Topic[]>): Promise<IAzureQuickPickItem<Topic | undefined>[]> {
-        const picks: IAzureQuickPickItem<Topic | undefined>[] = [{
-            label: localize('newTopic', '$(plus) Create new topic'),
-            description: '',
-            data: undefined
-        }];
+	private async getQuickPicks(
+		topicsTask: Promise<Topic[]>,
+	): Promise<IAzureQuickPickItem<Topic | undefined>[]> {
+		const picks: IAzureQuickPickItem<Topic | undefined>[] = [
+			{
+				label: localize("newTopic", "$(plus) Create new topic"),
+				description: "",
+				data: undefined,
+			},
+		];
 
-        const topics: Topic[] = await topicsTask;
-        return picks.concat(topics.map((t: Topic) => {
-            return {
-                id: t.id,
-                // tslint:disable-next-line:no-non-null-assertion
-                label: t.name!,
-                description: '',
-                data: t
-            };
-        }));
-    }
+		const topics: Topic[] = await topicsTask;
+		return picks.concat(
+			topics.map((t: Topic) => {
+				return {
+					id: t.id,
+					// tslint:disable-next-line:no-non-null-assertion
+					label: t.name!,
+					description: "",
+					data: t,
+				};
+			}),
+		);
+	}
 }

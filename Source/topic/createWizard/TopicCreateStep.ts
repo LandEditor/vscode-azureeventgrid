@@ -3,25 +3,47 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { EventGridManagementClient } from 'azure-arm-eventgrid';
-import * as vscode from 'vscode';
-import { AzureWizardExecuteStep, createAzureClient } from 'vscode-azureextensionui';
-import { ext } from '../../extensionVariables';
-import { localize } from '../../utils/localize';
-import { ITopicWizardContext } from './ITopicWizardContext';
+import { EventGridManagementClient } from "azure-arm-eventgrid";
+import * as vscode from "vscode";
+import {
+	AzureWizardExecuteStep,
+	createAzureClient,
+} from "vscode-azureextensionui";
+import { ext } from "../../extensionVariables";
+import { localize } from "../../utils/localize";
+import type { ITopicWizardContext } from "./ITopicWizardContext";
 
-export class TopicCreateStep<T extends ITopicWizardContext> extends AzureWizardExecuteStep<T> {
-    public async execute(wizardContext: T): Promise<T> {
-        if (!wizardContext.topic) {
-            ext.outputChannel.appendLine(localize('creating', 'Creating topic "{0}"...', wizardContext.newTopicName));
-            const client: EventGridManagementClient = createAzureClient(wizardContext, EventGridManagementClient);
-            // tslint:disable-next-line:no-non-null-assertion
-            wizardContext.topic = await client.topics.createOrUpdate(wizardContext.resourceGroup!.name!, wizardContext.newTopicName!, { location: wizardContext.location!.name! });
-            const message: string = localize('created', 'Successfully created topic "{0}".', wizardContext.newTopicName);
-            ext.outputChannel.appendLine(message);
-            vscode.window.showInformationMessage(message);
-        }
+export class TopicCreateStep<
+	T extends ITopicWizardContext,
+> extends AzureWizardExecuteStep<T> {
+	public async execute(wizardContext: T): Promise<T> {
+		if (!wizardContext.topic) {
+			ext.outputChannel.appendLine(
+				localize(
+					"creating",
+					'Creating topic "{0}"...',
+					wizardContext.newTopicName,
+				),
+			);
+			const client: EventGridManagementClient = createAzureClient(
+				wizardContext,
+				EventGridManagementClient,
+			);
+			// tslint:disable-next-line:no-non-null-assertion
+			wizardContext.topic = await client.topics.createOrUpdate(
+				wizardContext.resourceGroup!.name!,
+				wizardContext.newTopicName!,
+				{ location: wizardContext.location!.name! },
+			);
+			const message: string = localize(
+				"created",
+				'Successfully created topic "{0}".',
+				wizardContext.newTopicName,
+			);
+			ext.outputChannel.appendLine(message);
+			vscode.window.showInformationMessage(message);
+		}
 
-        return wizardContext;
-    }
+		return wizardContext;
+	}
 }
