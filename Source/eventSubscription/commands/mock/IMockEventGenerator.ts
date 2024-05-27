@@ -3,17 +3,17 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import type { IEventSchema } from "./IEventSchema";
+import { IEventSchema } from "./IEventSchema";
 
 export interface IMockEventGenerator {
-	destination?: {
-		eventSubscriptionId?: string;
-		endpointUrl?: string;
-	};
-	numberOfEvents?: number;
-	jsonSchemaFakerOptions?: {
-		alwaysFakeOptionals?: boolean;
-		useDefaultValue?: boolean;
-	};
-	schema?: IEventSchema;
+    destination?: {
+        eventSubscriptionId?: string;
+        endpointUrl?: string;
+    };
+    numberOfEvents?: number;
+    jsonSchemaFakerOptions?: {
+        alwaysFakeOptionals?: boolean,
+        useDefaultValue?: boolean
+    };
+    schema?: IEventSchema;
 }

@@ -3,11 +3,11 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import type { Topic } from "azure-arm-eventgrid/lib/models";
-import type { IResourceGroupWizardContext } from "vscode-azureextensionui";
+import { Topic } from "azure-arm-eventgrid/lib/models";
+import { IResourceGroupWizardContext } from "vscode-azureextensionui";
 
 export interface ITopicWizardContext extends IResourceGroupWizardContext {
-	topic?: Topic;
+    topic?: Topic;
 
-	newTopicName?: string;
+    newTopicName?: string;
 }
