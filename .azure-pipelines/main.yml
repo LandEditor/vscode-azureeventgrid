@@ -1,0 +1,48 @@
+variables:
+  ${{ if eq(variables['Build.Reason'], 'Schedule') }}:
+    ENABLE_LONG_RUNNING_TESTS: true
+
+jobs:
+- job: Windows
+  pool:
+    vmImage: windows-latest
+  steps:
+  - template: common/build.yml
+  - template: common/lint.yml
+  - template: common/test.yml
+
+- job: Linux
+  pool:
+    vmImage: ubuntu-latest
+  steps:
+  - template: common/build.yml
+  - template: common/publish-vsix.yml # Only publish vsix from linux build since we use this to release and want to stay consistent
+  - template: common/sbom.yml # only generate on linux
+  - template: common/lint.yml
+  - template: common/test.yml
+
+- job: macOS
+  pool:
+    vmImage: macOS-latest
+  steps:
+  - template: common/build.yml
+  - template: common/lint.yml
+  - template: common/test.yml
+
+trigger:
+  branches:
+    include:
+    - '*'
+
+pr:
+  branches:
+    include:
+    - '*'
+
+schedules:
+- cron: "0 10 * * *"
+  displayName: Nightly at 3:00 PT
+  always: true # Run even when there are no code changes
+  branches:
+    include:
+    - main
