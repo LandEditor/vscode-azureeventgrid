@@ -334,7 +334,7 @@
 		"workspaceContains:**/*.[eE][vV][eE][nN][tT][gG][eE][nN][eE][rR][aA][tT][oO][rR].[jJ][sS][oO]{[nN],[nN][cC]}"
 	],
 	"dependencies": {
-		"chance": "1.1.11",
+		"chance": "1.1.12",
 		"fs-extra": "11.2.0",
 		"json-schema-faker": "0.5.6",
 		"request-promise": "4.2.2"
@@ -342,7 +342,7 @@
 	"devDependencies": {
 		"@types/chance": "1.1.6",
 		"@types/fs-extra": "11.0.4",
-		"@types/node": "20.14.9",
+		"@types/node": "20.14.10",
 		"@types/request-promise": "4.1.51"
 	},
 	"extensionDependencies": [
