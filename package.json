@@ -1,24 +1,12 @@
 {
-	"activationEvents": [
-		"onCommand:azureEventGrid.selectSubscriptions",
-		"onCommand:azureEventGridTopic.refresh",
-		"onCommand:azureEventGridTopic.loadMore",
-		"onCommand:azureEventGridTopic.openInPortal",
-		"onCommand:azureEventGridTopic.createTopic",
-		"onCommand:azureEventGridTopic.deleteTopic",
-		"onCommand:azureEventGridSubscription.refresh",
-		"onCommand:azureEventGridSubscription.loadMore",
-		"onCommand:azureEventGridSubscription.openInPortal",
-		"onCommand:azureEventGridSubscription.createEventSubscription",
-		"onCommand:azureEventGridSubscription.deleteEventSubscription",
-		"onCommand:azureEventGridSubscription.createMockEventGenerator",
-		"onCommand:azureEventGridSubscription.sendEvents",
-		"onCommand:azureEventGridSubscription.previewEvents",
-		"onView:azureEventGridTopicExplorer",
-		"onView:azureEventGridSubscriptionExplorer",
-		"workspaceContains:**/*.[eE][vV][eE][nN][tT][gG][eE][nN][eE][rR][aA][tT][oO][rR].[jJ][sS][oO]{[nN],[nN][cC]}"
-	],
-	"aiKey": "AIF-d9b70cd4-b9f9-4d70-929b-a071c400b217",
+	"name": "vscode-azureeventgrid",
+	"displayName": "Azure Event Grid (deprecated)",
+	"description": "%extension.description%",
+	"main": "./out/src/extension",
+	"scripts": {
+		"build": "tsc -p ./",
+		"compile": "tsc -watch -p ./"
+	},
 	"contributes": {
 		"commands": [
 			{
@@ -326,33 +314,45 @@
 			]
 		}
 	},
+	"activationEvents": [
+		"onCommand:azureEventGrid.selectSubscriptions",
+		"onCommand:azureEventGridTopic.refresh",
+		"onCommand:azureEventGridTopic.loadMore",
+		"onCommand:azureEventGridTopic.openInPortal",
+		"onCommand:azureEventGridTopic.createTopic",
+		"onCommand:azureEventGridTopic.deleteTopic",
+		"onCommand:azureEventGridSubscription.refresh",
+		"onCommand:azureEventGridSubscription.loadMore",
+		"onCommand:azureEventGridSubscription.openInPortal",
+		"onCommand:azureEventGridSubscription.createEventSubscription",
+		"onCommand:azureEventGridSubscription.deleteEventSubscription",
+		"onCommand:azureEventGridSubscription.createMockEventGenerator",
+		"onCommand:azureEventGridSubscription.sendEvents",
+		"onCommand:azureEventGridSubscription.previewEvents",
+		"onView:azureEventGridTopicExplorer",
+		"onView:azureEventGridSubscriptionExplorer",
+		"workspaceContains:**/*.[eE][vV][eE][nN][tT][gG][eE][nN][eE][rR][aA][tT][oO][rR].[jJ][sS][oO]{[nN],[nN][cC]}"
+	],
 	"dependencies": {
 		"chance": "1.0.16",
 		"fs-extra": "5.0.0",
 		"json-schema-faker": "0.5.0-rc15",
 		"request-promise": "4.2.2"
 	},
-	"description": "%extension.description%",
 	"devDependencies": {
 		"@types/chance": "1.0.0",
 		"@types/fs-extra": "5.0.2",
 		"@types/node": "8.0.28",
 		"@types/request-promise": "4.1.41"
 	},
-	"displayName": "Azure Event Grid (deprecated)",
 	"extensionDependencies": [
 		"ms-vscode.azure-account"
 	],
+	"icon": "resources/azureEventGrid.png",
 	"galleryBanner": {
 		"color": "#002050",
 		"theme": "dark"
 	},
-	"icon": "resources/azureEventGrid.png",
-	"main": "./out/src/extension",
-	"name": "vscode-azureeventgrid",
 	"preview": true,
-	"scripts": {
-		"build": "tsc -p ./",
-		"compile": "tsc -watch -p ./"
-	}
+	"aiKey": "AIF-d9b70cd4-b9f9-4d70-929b-a071c400b217"
 }
