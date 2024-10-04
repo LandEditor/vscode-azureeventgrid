@@ -4,13 +4,20 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { EventSubscription } from "azure-arm-eventgrid/lib/models";
-import { IRelatedNameWizardContext, ISubscriptionWizardContext } from "vscode-azureextensionui";
+import {
+	IRelatedNameWizardContext,
+	ISubscriptionWizardContext,
+} from "vscode-azureextensionui";
+
 import { IEndpointUrlWizardContext } from "./IEndpointUrlWizardContext";
 import { TopicType } from "./TopicTypeStep";
 
-export interface IEventSubscriptionWizardContext extends ISubscriptionWizardContext, IRelatedNameWizardContext, IEndpointUrlWizardContext {
-    eventSubscription?: EventSubscription;
+export interface IEventSubscriptionWizardContext
+	extends ISubscriptionWizardContext,
+		IRelatedNameWizardContext,
+		IEndpointUrlWizardContext {
+	eventSubscription?: EventSubscription;
 
-    newEventSubscriptionName?: string;
-    topicType?: TopicType;
+	newEventSubscriptionName?: string;
+	topicType?: TopicType;
 }
