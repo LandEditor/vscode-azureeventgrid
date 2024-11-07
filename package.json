@@ -329,14 +329,14 @@
 	"dependencies": {
 		"chance": "1.1.12",
 		"fs-extra": "11.2.0",
-		"json-schema-faker": "0.5.6",
+		"json-schema-faker": "0.5.7",
 		"request-promise": "4.2.6"
 	},
 	"description": "%extension.description%",
 	"devDependencies": {
 		"@types/chance": "1.1.6",
 		"@types/fs-extra": "11.0.4",
-		"@types/node": "22.8.6",
+		"@types/node": "22.9.0",
 		"@types/request-promise": "4.1.51"
 	},
 	"displayName": "Azure Event Grid (deprecated)",
