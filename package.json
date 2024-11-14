@@ -329,7 +329,7 @@
 	"dependencies": {
 		"chance": "1.1.12",
 		"fs-extra": "11.2.0",
-		"json-schema-faker": "0.5.7",
+		"json-schema-faker": "0.5.8",
 		"request-promise": "4.2.6"
 	},
 	"description": "%extension.description%",
