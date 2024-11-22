@@ -64,6 +64,7 @@ export class EventSubscriptionProvider extends SubscriptionTreeItem {
 				}
 			}
 		});
+
 		const eventSubscriptions: EventSubscription[] = (<
 			EventSubscription[]
 		>[]).concat(
@@ -73,6 +74,7 @@ export class EventSubscriptionProvider extends SubscriptionTreeItem {
 				),
 			)),
 		);
+
 		return eventSubscriptions.map(
 			(es: EventSubscription) => new EventSubscriptionTreeItem(this, es),
 		);
@@ -107,6 +109,7 @@ export class EventSubscriptionProvider extends SubscriptionTreeItem {
 		await wizard.prompt(actionContext);
 		// tslint:disable-next-line:no-non-null-assertion
 		showCreatingNode(wizardContext.newEventSubscriptionName!);
+
 		const message: string = localize(
 			"creatingEventSubscription",
 			'Creating event subscription "{0}"...',
@@ -132,5 +135,6 @@ async function listLocations(root: ISubscriptionRoot): Promise<Location[]> {
 		root,
 		SubscriptionClient,
 	);
+
 	return await client.subscriptions.listLocations(root.subscriptionId);
 }

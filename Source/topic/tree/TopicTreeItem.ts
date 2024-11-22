@@ -29,6 +29,7 @@ export class TopicTreeItem extends AzureTreeItem {
 
 	public constructor(parent: TopicProvider, topic: Topic) {
 		super(parent);
+
 		if (!topic.id || !topic.name) {
 			throw new ArgumentError(topic);
 		}

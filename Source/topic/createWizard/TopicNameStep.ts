@@ -56,7 +56,9 @@ export class TopicNameStep<
 		name = name ? name.trim() : "";
 
 		const min: number = 3;
+
 		const max: number = 50;
+
 		if (name.length < min || name.length > max) {
 			return localize(
 				"invalidLength",

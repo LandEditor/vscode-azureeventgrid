@@ -47,8 +47,10 @@ export class IoTHubListStep<
 			wizardContext,
 			IotHubClient,
 		);
+
 		const hubs: IotHubDescription[] =
 			await client.iotHubResource.listBySubscription();
+
 		return hubs.map((h: IotHubDescription) => {
 			return {
 				id: h.id,

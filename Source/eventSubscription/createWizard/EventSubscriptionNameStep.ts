@@ -62,7 +62,9 @@ export class EventSubscriptionNameStep extends AzureNameStep<IEventSubscriptionW
 		name = name ? name.trim() : "";
 
 		const min: number = 3;
+
 		const max: number = 64;
+
 		if (name.length < min || name.length > max) {
 			return localize(
 				"invalidLength",

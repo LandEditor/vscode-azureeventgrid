@@ -51,7 +51,9 @@ export class EventHubsNamespaceListStep<
 			wizardContext,
 			EventHubManagementClient,
 		);
+
 		const namespaces: EHNamespace[] = await client.namespaces.list();
+
 		return namespaces.map((n: EHNamespace) => {
 			return {
 				id: n.id,

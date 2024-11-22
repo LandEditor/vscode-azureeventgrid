@@ -22,6 +22,7 @@ import { ext } from "./extensionVariables";
 import { registerTopicCommands } from "./topic/registerTopicCommands";
 
 const loadStartTime: number = Date.now();
+
 let loadEndTime: number;
 
 export async function activate(

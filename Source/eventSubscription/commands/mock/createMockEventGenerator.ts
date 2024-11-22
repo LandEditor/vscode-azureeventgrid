@@ -30,9 +30,13 @@ export async function createMockEventGenerator(
 	node?: EventSubscriptionTreeItem,
 ): Promise<void> {
 	let eventType: string;
+
 	let topic: string;
+
 	let destination: {};
+
 	let fileName: string;
+
 	if (node) {
 		eventType = getEventTypeFromTopic(node.topic);
 		topic = node.topic;
@@ -44,7 +48,9 @@ export async function createMockEventGenerator(
 		eventType = await promptForEventType();
 		topic =
 			"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testgroup/providers/Microsoft.Provider/namespaces/testresource";
+
 		const urlContext: IEndpointUrlWizardContext = {};
+
 		const urlStep: EndpointUrlStep<IEndpointUrlWizardContext> =
 			new EndpointUrlStep();
 		await urlStep.prompt(urlContext);
@@ -57,42 +63,57 @@ export async function createMockEventGenerator(
 	actionContext.properties.eventType = eventType;
 
 	let schemaFileName: string | undefined;
+
 	let eventSubTypePattern: string;
+
 	let subjectPattern: string;
+
 	switch (eventType) {
 		case EventType.Storage:
 			schemaFileName = "Storage";
 			eventSubTypePattern = "Blob(Created|Deleted)";
 			subjectPattern =
 				"/blobServices/default/containers/[a-zA-Z0-9]+/blobs/[a-zA-Z0-9]+";
+
 			break;
+
 		case EventType.Resources:
 			schemaFileName = "Resource";
 			eventSubTypePattern =
 				"Resource(Write|Delete)(Success|Failure|Cancel)";
 			subjectPattern =
 				"/subscriptions/[a-zA-Z0-9]+/resourceGroups/[a-zA-Z0-9]+/providers/Microsoft\\.[a-zA-Z0-9]+/[a-zA-Z0-9]+";
+
 			break;
+
 		case EventType.ContainerRegistry:
 			schemaFileName = "ContainerRegistry";
 			eventSubTypePattern = "Image(Pushed|Deleted)";
 			subjectPattern = "[a-zA-Z0-9]+:[0-9]\\.[0-9]\\.[0-9]";
+
 			break;
+
 		case EventType.Devices:
 			schemaFileName = "IotHub";
 			eventSubTypePattern = "Device(Created|Deleted)";
 			subjectPattern = "devices/[a-zA-Z0-9]+";
+
 			break;
+
 		case EventType.EventHub:
 			schemaFileName = "EventHub";
 			eventSubTypePattern = "CaptureFileCreated";
 			// Get the event hub name from the topic id and use that as the subject
 			subjectPattern = topic.substring(topic.lastIndexOf("/") + 1);
+
 			break;
+
 		case EventType.Custom:
 			eventSubTypePattern = "[a-zA-Z0-9]+";
 			subjectPattern = "[a-zA-Z0-9]+";
+
 			break;
+
 		default:
 			throw new RangeError();
 	}
@@ -100,9 +121,11 @@ export async function createMockEventGenerator(
 	const templatesPath: string = ext.context.asAbsolutePath(
 		path.join("resources", "templates"),
 	);
+
 	const eventSchema: IEventSchema = <IEventSchema>(
 		await fse.readJson(path.join(templatesPath, "Event.json"))
 	);
+
 	if (schemaFileName) {
 		eventSchema.properties.data = <{}>(
 			await fse.readJson(
@@ -120,6 +143,7 @@ export async function createMockEventGenerator(
 		"definitions",
 		`${schemaFileName}.json`,
 	);
+
 	if (await fse.pathExists(definitionsPath)) {
 		eventSchema.definitions = <{}>await fse.readJson(definitionsPath);
 	}
@@ -152,18 +176,24 @@ export function getEventTypeFromTopic(topic: string): EventType {
 			/^\/subscriptions\/.*\/resourceGroups\/.*\/providers\/(.*)\/[^\/]+$/i.exec(
 				topic,
 			);
+
 		if (result && result.length > 1) {
 			switch (result[1].toLowerCase()) {
 				case "microsoft.storage/storageaccounts":
 					return EventType.Storage;
+
 				case "microsoft.containerregistry/registries":
 					return EventType.ContainerRegistry;
+
 				case "microsoft.devices/iothubs":
 					return EventType.Devices;
+
 				case "microsoft.eventhub/namespaces":
 					return EventType.EventHub;
+
 				case "microsoft.eventgrid/topics":
 					return EventType.Custom;
+
 				default:
 			}
 		}

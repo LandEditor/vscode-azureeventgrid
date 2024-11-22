@@ -31,6 +31,7 @@ export class EventSubscriptionTreeItem extends AzureTreeItem {
 		eventSubscription: EventSubscription,
 	) {
 		super(parent);
+
 		if (
 			!eventSubscription.id ||
 			!eventSubscription.name ||

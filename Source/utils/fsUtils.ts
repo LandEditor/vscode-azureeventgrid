@@ -26,6 +26,7 @@ export namespace fsUtils {
 		suffix?: string,
 	): Promise<string> {
 		let count: number = 0;
+
 		const maxCount: number = 1024;
 
 		while (count < maxCount) {
@@ -34,9 +35,11 @@ export namespace fsUtils {
 			const fullPath: string = path.join(folderPath, fullFileName);
 
 			const pathExists: boolean = await fse.pathExists(fullPath);
+
 			const editorExists: boolean = workspace.textDocuments.some(
 				(doc: TextDocument) => isPathEqual(doc.uri.fsPath, fullPath),
 			);
+
 			if (!pathExists && !editorExists) {
 				return fullFileName;
 			}
@@ -63,15 +66,19 @@ export namespace fsUtils {
 		viewColumn?: number,
 	): Promise<void> {
 		const folderPath: string = workspace.rootPath || os.homedir();
+
 		const fileName: string = await getUniqueFileName(
 			folderPath,
 			fileNamePrefix,
 			fileNameSuffix,
 		);
+
 		const uri: Uri = Uri.file(path.join(folderPath, fileName)).with({
 			scheme: "untitled",
 		});
+
 		const doc: TextDocument = await workspace.openTextDocument(uri);
+
 		const editor: TextEditor = await window.showTextDocument(
 			doc,
 			viewColumn !== undefined && viewColumn > 3

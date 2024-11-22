@@ -71,16 +71,19 @@ async function getEndpointUrl(
 			>await ext.eventSubscriptionTree.findTreeItem(
 				eventGenerator.destination.eventSubscriptionId,
 			);
+
 			if (node) {
 				const client: EventGridManagementClient = createAzureClient(
 					node.root,
 					EventGridManagementClient,
 				);
+
 				const url: EventSubscriptionFullUrl =
 					await client.eventSubscriptions.getFullUrl(
 						node.topic,
 						node.name,
 					);
+
 				if (url.endpointUrl) {
 					return url.endpointUrl;
 				} else {

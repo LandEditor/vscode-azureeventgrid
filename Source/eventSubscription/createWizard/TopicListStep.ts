@@ -30,6 +30,7 @@ export class TopicListStep<
 				wizardContext,
 				EventGridManagementClient,
 			);
+
 			const quickPickOptions: IAzureQuickPickOptions = {
 				placeHolder: localize("topicPlaceHolder", "Select a topic"),
 				id: `TopicListStep/${wizardContext.subscriptionId}`,
@@ -69,6 +70,7 @@ export class TopicListStep<
 		];
 
 		const topics: Topic[] = await topicsTask;
+
 		return picks.concat(
 			topics.map((t: Topic) => {
 				return {

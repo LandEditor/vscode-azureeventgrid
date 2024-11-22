@@ -15,9 +15,14 @@ import {
  */
 export namespace ext {
 	export let outputChannel: OutputChannel;
+
 	export let ui: IAzureUserInput;
+
 	export let reporter: ITelemetryReporter;
+
 	export let context: ExtensionContext;
+
 	export let topicTree: AzureTreeDataProvider;
+
 	export let eventSubscriptionTree: AzureTreeDataProvider;
 }

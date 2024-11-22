@@ -35,8 +35,10 @@ export class TopicProvider extends SubscriptionTreeItem {
 			this.root,
 			EventGridManagementClient,
 		);
+
 		const topics: TopicsListResult =
 			await client.topics.listBySubscription();
+
 		return topics.map((topic: Topic) => new TopicTreeItem(this, topic));
 	}
 
@@ -65,6 +67,7 @@ export class TopicProvider extends SubscriptionTreeItem {
 		await wizard.prompt(actionContext);
 		// tslint:disable-next-line:no-non-null-assertion
 		showCreatingNode(wizardContext.newTopicName!);
+
 		const message: string = localize(
 			"creatingTopic",
 			'Creating topic "{0}"...',

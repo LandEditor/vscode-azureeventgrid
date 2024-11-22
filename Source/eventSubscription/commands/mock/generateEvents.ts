@@ -21,6 +21,7 @@ export async function generateEvents(
 	uri: Uri,
 ): Promise<[{}[], IMockEventGenerator]> {
 	const doc: TextDocument = await workspace.openTextDocument(uri);
+
 	const eventGenerator: IMockEventGenerator = <IMockEventGenerator>(
 		JSON.parse(doc.getText())
 	);
@@ -31,9 +32,11 @@ export async function generateEvents(
 	}
 
 	const events: Promise<{}>[] = [];
+
 	let count: number = 0;
 	// tslint:disable-next-line:strict-boolean-expressions
 	const numberOfEvents: number = eventGenerator.numberOfEvents || 1;
+
 	while (count < numberOfEvents) {
 		// tslint:disable-next-line:no-unsafe-any
 		events.push(jsf.resolve(eventGenerator.schema));

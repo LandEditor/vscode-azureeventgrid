@@ -11,6 +11,7 @@ import { IMockEventGenerator } from "./IMockEventGenerator";
 
 export async function previewEvents(uri: Uri): Promise<void> {
 	const [events]: [{}[], IMockEventGenerator] = await generateEvents(uri);
+
 	const viewColumn: number | undefined =
 		window.activeTextEditor !== undefined &&
 		window.activeTextEditor.viewColumn !== undefined

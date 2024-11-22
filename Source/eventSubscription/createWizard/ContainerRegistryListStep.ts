@@ -48,7 +48,9 @@ export class ContainerRegistryListStep<
 			wizardContext,
 			ContainerRegistryManagementClient,
 		);
+
 		const registries: Registry[] = await client.registries.list();
+
 		return registries.map((r: Registry) => {
 			return {
 				id: r.id,

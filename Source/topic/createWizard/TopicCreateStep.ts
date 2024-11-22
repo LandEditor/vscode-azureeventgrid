@@ -26,6 +26,7 @@ export class TopicCreateStep<
 					wizardContext.newTopicName,
 				),
 			);
+
 			const client: EventGridManagementClient = createAzureClient(
 				wizardContext,
 				EventGridManagementClient,
@@ -36,6 +37,7 @@ export class TopicCreateStep<
 				wizardContext.newTopicName!,
 				{ location: wizardContext.location!.name! },
 			);
+
 			const message: string = localize(
 				"created",
 				'Successfully created topic "{0}".',
