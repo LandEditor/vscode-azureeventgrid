@@ -115,6 +115,7 @@ export class EventSubscriptionProvider extends SubscriptionTreeItem {
 			'Creating event subscription "{0}"...',
 			wizardContext.newEventSubscriptionName,
 		);
+
 		await vscode.window.withProgress(
 			{ title: message, location: vscode.ProgressLocation.Notification },
 			async () => {

@@ -85,6 +85,7 @@ export namespace fsUtils {
 				? ViewColumn.One
 				: viewColumn,
 		);
+
 		await editor.edit((builder: TextEditorEdit) => {
 			builder.insert(new Position(0, 0), data);
 		});

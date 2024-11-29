@@ -43,7 +43,9 @@ export class TopicCreateStep<
 				'Successfully created topic "{0}".',
 				wizardContext.newTopicName,
 			);
+
 			ext.outputChannel.appendLine(message);
+
 			vscode.window.showInformationMessage(message);
 		}
 

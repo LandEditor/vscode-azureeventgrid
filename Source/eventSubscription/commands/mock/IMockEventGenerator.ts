@@ -8,12 +8,17 @@ import { IEventSchema } from "./IEventSchema";
 export interface IMockEventGenerator {
 	destination?: {
 		eventSubscriptionId?: string;
+
 		endpointUrl?: string;
 	};
+
 	numberOfEvents?: number;
+
 	jsonSchemaFakerOptions?: {
 		alwaysFakeOptionals?: boolean;
+
 		useDefaultValue?: boolean;
 	};
+
 	schema?: IEventSchema;
 }

@@ -22,6 +22,7 @@ export class EventSubscriptionNameStep extends AzureNameStep<IEventSubscriptionW
 				wizardContext.relatedNameTask
 					? await wizardContext.relatedNameTask
 					: undefined;
+
 			wizardContext.newEventSubscriptionName = (
 				await ext.ui.showInputBox({
 					value: suggestedName,

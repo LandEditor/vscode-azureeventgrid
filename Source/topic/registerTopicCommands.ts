@@ -25,7 +25,9 @@ export function registerTopicCommands(): void {
 		TopicProvider,
 		"azureEventGridTopic.loadMore",
 	);
+
 	ext.context.subscriptions.push(ext.topicTree);
+
 	ext.context.subscriptions.push(
 		vscode.window.registerTreeDataProvider(
 			"azureEventGridTopicExplorer",
@@ -37,20 +39,24 @@ export function registerTopicCommands(): void {
 		"azureEventGridTopic.refresh",
 		async (node?: AzureTreeItem) => await ext.topicTree.refresh(node),
 	);
+
 	registerCommand(
 		"azureEventGridTopic.loadMore",
 		async (node: AzureTreeItem) => await ext.topicTree.loadMore(node),
 	);
+
 	registerCommand(
 		"azureEventGridTopic.openInPortal",
 		async (node?: AzureTreeItem) =>
 			await openInPortal(ext.topicTree, TopicTreeItem.contextValue, node),
 	);
+
 	registerCommand(
 		"azureEventGridTopic.deleteTopic",
 		async (node?: AzureTreeItem) =>
 			await deleteNode(ext.topicTree, TopicTreeItem.contextValue, node),
 	);
+
 	registerCommand(
 		"azureEventGridTopic.createTopic",
 		async function (

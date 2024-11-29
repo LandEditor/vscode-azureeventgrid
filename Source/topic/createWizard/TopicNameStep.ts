@@ -22,6 +22,7 @@ export class TopicNameStep<
 				wizardContext.relatedNameTask
 					? await wizardContext.relatedNameTask
 					: undefined;
+
 			wizardContext.newTopicName = (
 				await ext.ui.showInputBox({
 					value: suggestedName,

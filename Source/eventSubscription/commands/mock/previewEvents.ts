@@ -17,6 +17,7 @@ export async function previewEvents(uri: Uri): Promise<void> {
 		window.activeTextEditor.viewColumn !== undefined
 			? window.activeTextEditor.viewColumn + 1
 			: undefined;
+
 	await fsUtils.showNewFile(
 		JSON.stringify(events, undefined, 2),
 		"eventsPreview",

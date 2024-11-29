@@ -33,6 +33,7 @@ export class EventHubsNamespaceListStep<
 				),
 				id: `EventHubsNamespaceListStep/${wizardContext.subscriptionId}`,
 			};
+
 			wizardContext.eventHubsNamespace = (
 				await ext.ui.showQuickPick(
 					this.getQuickPicks(wizardContext),

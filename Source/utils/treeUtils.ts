@@ -8,6 +8,7 @@ import * as path from "path";
 export namespace treeUtils {
 	export interface IThemedIconPath {
 		light: string;
+
 		dark: string;
 	}
 

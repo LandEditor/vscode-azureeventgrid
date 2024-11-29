@@ -29,20 +29,27 @@ export async function activate(
 	context: vscode.ExtensionContext,
 ): Promise<AzureExtensionApiProvider> {
 	ext.context = context;
+
 	ext.reporter = createTelemetryReporter(context);
+
 	ext.outputChannel = vscode.window.createOutputChannel("Azure Event Grid");
+
 	context.subscriptions.push(ext.outputChannel);
+
 	ext.ui = new AzureUserInput(context.globalState);
+
 	registerUIExtensionVariables(ext);
 
 	await callWithTelemetryAndErrorHandling(
 		"azureEventGrid.activate",
 		async function (this: IActionContext): Promise<void> {
 			this.properties.isActivationEvent = "true";
+
 			this.measurements.mainFileLoad =
 				(loadEndTime - loadStartTime) / 1000;
 
 			registerTopicCommands();
+
 			registerEventSubscriptionCommands();
 
 			registerCommand(

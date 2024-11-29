@@ -116,7 +116,9 @@ export class EventSubscriptionCreateStep extends AzureWizardExecuteStep<IEventSu
 				'Successfully created event subscription "{0}".',
 				wizardContext.newEventSubscriptionName,
 			);
+
 			ext.outputChannel.appendLine(message);
+
 			vscode.window.showInformationMessage(message);
 		}
 

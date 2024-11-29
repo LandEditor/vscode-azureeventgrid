@@ -20,10 +20,14 @@ import { EventSubscriptionProvider } from "./EventSubscriptionProvider";
 
 export class EventSubscriptionTreeItem extends AzureTreeItem {
 	public static contextValue: string = "azureEventGridSubscription";
+
 	public readonly contextValue: string =
 		EventSubscriptionTreeItem.contextValue;
+
 	public readonly id: string;
+
 	public readonly topic: string;
+
 	public readonly name: string;
 
 	public constructor(
@@ -41,7 +45,9 @@ export class EventSubscriptionTreeItem extends AzureTreeItem {
 		}
 
 		this.id = eventSubscription.id;
+
 		this.name = eventSubscription.name;
+
 		this.topic = eventSubscription.topic;
 	}
 
@@ -59,6 +65,7 @@ export class EventSubscriptionTreeItem extends AzureTreeItem {
 			'Are you sure you want to delete event subscription "{0}"?',
 			this.name,
 		);
+
 		await ext.ui.showWarningMessage(
 			message,
 			{ modal: true },
@@ -70,6 +77,7 @@ export class EventSubscriptionTreeItem extends AzureTreeItem {
 			this.root,
 			EventGridManagementClient,
 		);
+
 		await vscode.window.withProgress(
 			{
 				title: localize(
@@ -86,6 +94,7 @@ export class EventSubscriptionTreeItem extends AzureTreeItem {
 				);
 			},
 		);
+
 		vscode.window.showInformationMessage(
 			localize(
 				"successfullyDeleted",

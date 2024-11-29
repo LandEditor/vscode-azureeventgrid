@@ -73,6 +73,7 @@ export class TopicProvider extends SubscriptionTreeItem {
 			'Creating topic "{0}"...',
 			wizardContext.newTopicName,
 		);
+
 		await vscode.window.withProgress(
 			{ title: message, location: vscode.ProgressLocation.Notification },
 			async () => {

@@ -29,6 +29,7 @@ export class IoTHubListStep<
 				placeHolder: localize("listPlaceHolder", "Select an IoT Hub"),
 				id: `IoTHubListStep/${wizardContext.subscriptionId}`,
 			};
+
 			wizardContext.iotHub = (
 				await ext.ui.showQuickPick(
 					this.getQuickPicks(wizardContext),

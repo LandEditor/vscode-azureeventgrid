@@ -21,10 +21,13 @@ import { TopicProvider } from "./TopicProvider";
 
 export class TopicTreeItem extends AzureTreeItem {
 	public static contextValue: string = "azureEventGridTopic";
+
 	public readonly contextValue: string = TopicTreeItem.contextValue;
+
 	public readonly id: string;
 
 	private readonly _name: string;
+
 	private readonly _resourceGroup: string;
 
 	public constructor(parent: TopicProvider, topic: Topic) {
@@ -35,7 +38,9 @@ export class TopicTreeItem extends AzureTreeItem {
 		}
 
 		this.id = topic.id;
+
 		this._name = topic.name;
+
 		this._resourceGroup = azureUtils.getResourceGroupFromId(topic.id);
 	}
 
@@ -53,6 +58,7 @@ export class TopicTreeItem extends AzureTreeItem {
 			'Are you sure you want to delete topic "{0}"?',
 			this._name,
 		);
+
 		await ext.ui.showWarningMessage(
 			message,
 			{ modal: true },
@@ -64,6 +70,7 @@ export class TopicTreeItem extends AzureTreeItem {
 			this.root,
 			EventGridManagementClient,
 		);
+
 		await vscode.window.withProgress(
 			{
 				title: localize(
@@ -80,6 +87,7 @@ export class TopicTreeItem extends AzureTreeItem {
 				);
 			},
 		);
+
 		vscode.window.showInformationMessage(
 			localize(
 				"successfullyDeleted",

@@ -39,13 +39,17 @@ export async function createMockEventGenerator(
 
 	if (node) {
 		eventType = getEventTypeFromTopic(node.topic);
+
 		topic = node.topic;
+
 		destination = {
 			eventSubscriptionId: node.id,
 		};
+
 		fileName = node.label;
 	} else {
 		eventType = await promptForEventType();
+
 		topic =
 			"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testgroup/providers/Microsoft.Provider/namespaces/testresource";
 
@@ -53,10 +57,13 @@ export async function createMockEventGenerator(
 
 		const urlStep: EndpointUrlStep<IEndpointUrlWizardContext> =
 			new EndpointUrlStep();
+
 		await urlStep.prompt(urlContext);
+
 		destination = {
 			endpointUrl: urlContext.endpointUrl,
 		};
+
 		fileName = "test";
 	}
 
@@ -71,7 +78,9 @@ export async function createMockEventGenerator(
 	switch (eventType) {
 		case EventType.Storage:
 			schemaFileName = "Storage";
+
 			eventSubTypePattern = "Blob(Created|Deleted)";
+
 			subjectPattern =
 				"/blobServices/default/containers/[a-zA-Z0-9]+/blobs/[a-zA-Z0-9]+";
 
@@ -79,8 +88,10 @@ export async function createMockEventGenerator(
 
 		case EventType.Resources:
 			schemaFileName = "Resource";
+
 			eventSubTypePattern =
 				"Resource(Write|Delete)(Success|Failure|Cancel)";
+
 			subjectPattern =
 				"/subscriptions/[a-zA-Z0-9]+/resourceGroups/[a-zA-Z0-9]+/providers/Microsoft\\.[a-zA-Z0-9]+/[a-zA-Z0-9]+";
 
@@ -88,20 +99,25 @@ export async function createMockEventGenerator(
 
 		case EventType.ContainerRegistry:
 			schemaFileName = "ContainerRegistry";
+
 			eventSubTypePattern = "Image(Pushed|Deleted)";
+
 			subjectPattern = "[a-zA-Z0-9]+:[0-9]\\.[0-9]\\.[0-9]";
 
 			break;
 
 		case EventType.Devices:
 			schemaFileName = "IotHub";
+
 			eventSubTypePattern = "Device(Created|Deleted)";
+
 			subjectPattern = "devices/[a-zA-Z0-9]+";
 
 			break;
 
 		case EventType.EventHub:
 			schemaFileName = "EventHub";
+
 			eventSubTypePattern = "CaptureFileCreated";
 			// Get the event hub name from the topic id and use that as the subject
 			subjectPattern = topic.substring(topic.lastIndexOf("/") + 1);
@@ -110,6 +126,7 @@ export async function createMockEventGenerator(
 
 		case EventType.Custom:
 			eventSubTypePattern = "[a-zA-Z0-9]+";
+
 			subjectPattern = "[a-zA-Z0-9]+";
 
 			break;
@@ -135,7 +152,9 @@ export async function createMockEventGenerator(
 	}
 
 	eventSchema.properties.topic.default = topic;
+
 	eventSchema.properties.eventType.pattern = `${eventType.replace(".", "\\.")}\\.${eventSubTypePattern}`;
+
 	eventSchema.properties.subject.pattern = subjectPattern;
 
 	const definitionsPath: string = path.join(

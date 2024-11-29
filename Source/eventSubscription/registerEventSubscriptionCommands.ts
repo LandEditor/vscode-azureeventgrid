@@ -29,7 +29,9 @@ export function registerEventSubscriptionCommands(): void {
 		EventSubscriptionProvider,
 		"azureEventGridSubscription.loadMore",
 	);
+
 	ext.context.subscriptions.push(ext.eventSubscriptionTree);
+
 	ext.context.subscriptions.push(
 		vscode.window.registerTreeDataProvider(
 			"azureEventGridSubscriptionExplorer",
@@ -52,11 +54,13 @@ export function registerEventSubscriptionCommands(): void {
 		async (node?: AzureTreeItem) =>
 			await ext.eventSubscriptionTree.refresh(node),
 	);
+
 	registerCommand(
 		"azureEventGridSubscription.loadMore",
 		async (node: AzureTreeItem) =>
 			await ext.eventSubscriptionTree.loadMore(node),
 	);
+
 	registerCommand(
 		"azureEventGridSubscription.openInPortal",
 		async (node?: AzureTreeItem) =>
@@ -66,6 +70,7 @@ export function registerEventSubscriptionCommands(): void {
 				node,
 			),
 	);
+
 	registerCommand(
 		"azureEventGridSubscription.deleteEventSubscription",
 		async (node?: AzureTreeItem) =>
@@ -75,6 +80,7 @@ export function registerEventSubscriptionCommands(): void {
 				node,
 			),
 	);
+
 	registerCommand(
 		"azureEventGridSubscription.createEventSubscription",
 		async function (
@@ -89,6 +95,7 @@ export function registerEventSubscriptionCommands(): void {
 			);
 		},
 	);
+
 	registerCommand(
 		"azureEventGridSubscription.createMockEventGenerator",
 		async function (
@@ -98,10 +105,12 @@ export function registerEventSubscriptionCommands(): void {
 			await createMockEventGenerator(this, node);
 		},
 	);
+
 	registerCommand(
 		"azureEventGridSubscription.sendEvents",
 		async (uri: vscode.Uri) => await sendEvents(uri),
 	);
+
 	registerCommand(
 		"azureEventGridSubscription.previewEvents",
 		async (uri: vscode.Uri) => await previewEvents(uri),

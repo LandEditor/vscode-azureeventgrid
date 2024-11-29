@@ -30,6 +30,7 @@ export class ContainerRegistryListStep<
 				placeHolder: localize("listPlaceHolder", "Select a registry"),
 				id: `ContainerRegistryListStep/${wizardContext.subscriptionId}`,
 			};
+
 			wizardContext.registry = (
 				await ext.ui.showQuickPick(
 					this.getQuickPicks(wizardContext),

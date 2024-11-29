@@ -17,6 +17,7 @@ import { generateEvents } from "./generateEvents";
 
 export async function sendEvents(uri: Uri): Promise<void> {
 	const mainMessage: string = localize("sending", "Sending events...");
+
 	await window.withProgress(
 		{ location: ProgressLocation.Notification, title: mainMessage },
 		async (progress: Progress<{}>): Promise<void> => {

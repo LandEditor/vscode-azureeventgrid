@@ -40,6 +40,7 @@ export async function generateEvents(
 	while (count < numberOfEvents) {
 		// tslint:disable-next-line:no-unsafe-any
 		events.push(jsf.resolve(eventGenerator.schema));
+
 		count += 1;
 	}
 

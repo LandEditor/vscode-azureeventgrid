@@ -19,5 +19,6 @@ export interface IEventSubscriptionWizardContext
 	eventSubscription?: EventSubscription;
 
 	newEventSubscriptionName?: string;
+
 	topicType?: TopicType;
 }

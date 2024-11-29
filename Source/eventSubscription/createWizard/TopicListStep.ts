@@ -35,6 +35,7 @@ export class TopicListStep<
 				placeHolder: localize("topicPlaceHolder", "Select a topic"),
 				id: `TopicListStep/${wizardContext.subscriptionId}`,
 			};
+
 			wizardContext.topic = (
 				await ext.ui.showQuickPick(
 					this.getQuickPicks(client.topics.listBySubscription()),
