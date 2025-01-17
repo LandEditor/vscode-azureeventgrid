@@ -335,14 +335,14 @@
 	],
 	"dependencies": {
 		"chance": "1.1.12",
-		"fs-extra": "11.2.0",
+		"fs-extra": "11.3.0",
 		"json-schema-faker": "0.5.8",
 		"request-promise": "4.2.6"
 	},
 	"devDependencies": {
 		"@types/chance": "1.1.6",
 		"@types/fs-extra": "11.0.4",
-		"@types/node": "22.10.6",
+		"@types/node": "22.10.7",
 		"@types/request-promise": "4.1.51"
 	},
 	"extensionDependencies": [
